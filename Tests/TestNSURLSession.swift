@@ -23,13 +23,7 @@ class NSURLSessionTests: XCTestCase {
             XCTAssertEqual(json, rsp)
             XCTFail()
         }.catch(policy: .allErrors) { error in
-            do {
-                throw error
-            } catch is PromiseCancelledError {
-                ex.fulfill()
-            } catch {
-                XCTFail()
-            }
+            error.isCancelled ? ex.fulfill() : XCTFail()
         }
         context.cancelAll()
         waitForExpectations(timeout: 1)
@@ -56,13 +50,7 @@ class NSURLSessionTests: XCTestCase {
             XCTAssertEqual(x.data, dummy)
             ex.fulfill()
         }.catch(policy: .allErrors) { error in
-            do {
-                throw error
-            } catch is PromiseCancelledError {
-                ex.fulfill()
-            } catch {
-                XCTFail()
-            }
+            error.isCancelled ? ex.fulfill() : XCTFail()
         }
         context.cancelAll()
 
@@ -88,13 +76,7 @@ class NSURLSessionTests: XCTestCase {
             XCTAssertEqual($0, dummy)
             ex.fulfill()
         }.catch(policy: .allErrors) { error in
-            do {
-            throw error
-            } catch is PromiseCancelledError {
-                ex.fulfill()
-            } catch {
-                XCTFail()
-            }
+            error.isCancelled ? ex.fulfill() : XCTFail()
         }
         context.cancelAll()
 
