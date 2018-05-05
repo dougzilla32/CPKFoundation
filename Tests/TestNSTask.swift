@@ -12,14 +12,14 @@ class NSTaskTests: XCTestCase {
         task.launchPath = "/usr/bin/man"
         task.arguments = ["ls"]
         
-        let context = CancelContext.makeContext()
+        let context = CancelContext()
         task.launch(.promise, cancel: context).done { stdout, _ in
             let stdout = String(data: stdout.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
             XCTAssertEqual(stdout, "bar\n")
         }.catch(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail()
         }
-        context.cancelAll()
+        context.cancel()
         waitForExpectations(timeout: 3)
     }
 
@@ -31,13 +31,13 @@ class NSTaskTests: XCTestCase {
         task.launchPath = "/bin/ls"
         task.arguments = ["-l", dir]
 
-        let context = CancelContext.makeContext()
+        let context = CancelContext()
         task.launch(.promise, cancel: context).done { _ in
             XCTFail()
         }.catch(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail("unexpected error \(error)")
         }
-        context.cancelAll()
+        context.cancel()
         waitForExpectations(timeout: 3)
     }
 }

@@ -6,20 +6,14 @@ import CancellablePromiseKit
 
 #if os(macOS)
 
-public class ProcessTask: CancellableTask {
-    let task: Process
-    
-    init(_ task: Process) {
-        self.task = task
-    }
-    
+extension Process: CancellableTask {
     public func cancel() {
-        task.interrupt()
+        interrupt()
     }
     
     public var isCancelled: Bool {
         get {
-            return !task.isRunning
+            return !isRunning
         }
     }
 }
@@ -52,7 +46,7 @@ extension Process {
              print(str)
          }
      */
-    public func launch(_: PMKNamespacer, cancel: CancelMode) -> Promise<(out: Pipe, err: Pipe)> {
+    public func launch(_: PMKNamespacer, cancel: CancelContext) -> Promise<(out: Pipe, err: Pipe)> {
         let (stdout, stderr) = (Pipe(), Pipe())
         
         do {
@@ -85,7 +79,7 @@ extension Process {
             }
         }
 
-        return Promise(cancel: cancel, task: ProcessTask(self)) { seal in
+        return Promise(cancel: cancel, task: self) { seal in
             q.async {
                 self.waitUntilExit()
 

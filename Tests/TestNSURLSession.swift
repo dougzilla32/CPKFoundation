@@ -14,7 +14,7 @@ class NSURLSessionTests: XCTestCase {
 
         let ex = expectation(description: "")
         let rq = URLRequest(url: URL(string: "http://example.com")!)
-        let context = CancelContext.makeContext()
+        let context = CancelContext()
         firstly {
             URLSession.shared.dataTask(.promise, with: rq, cancel: context)
         }.compactMap {
@@ -25,7 +25,7 @@ class NSURLSessionTests: XCTestCase {
         }.catch(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail()
         }
-        context.cancelAll()
+        context.cancel()
         waitForExpectations(timeout: 1)
     }
 
@@ -43,7 +43,7 @@ class NSURLSessionTests: XCTestCase {
         let ex = expectation(description: "")
         let rq = URLRequest(url: URL(string: "http://example.com")!)
 
-        let context = CancelContext.makeContext()
+        let context = CancelContext()
         after(.milliseconds(100)).then {
             URLSession.shared.dataTask(.promise, with: rq, cancel: context)
         }.done { x in
@@ -52,7 +52,7 @@ class NSURLSessionTests: XCTestCase {
         }.catch(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail()
         }
-        context.cancelAll()
+        context.cancel()
 
         waitForExpectations(timeout: 1)
     }
@@ -69,7 +69,7 @@ class NSURLSessionTests: XCTestCase {
         let ex = expectation(description: "")
         let rq = URLRequest(url: URL(string: "http://example.com")!)
 
-        let context = CancelContext.makeContext()
+        let context = CancelContext()
         after(.milliseconds(100)).then {
             URLSession.shared.dataTask(.promise, with: rq, cancel: context)
         }.map(String.init).done {
@@ -78,7 +78,7 @@ class NSURLSessionTests: XCTestCase {
         }.catch(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail()
         }
-        context.cancelAll()
+        context.cancel()
 
         waitForExpectations(timeout: 1)
     }

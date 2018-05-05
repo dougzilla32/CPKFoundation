@@ -4,20 +4,10 @@ import PromiseKit
 import CancellablePromiseKit
 #endif
 
-public class URLSessionCancellableTask: CancellableTask {
-    let task: URLSessionTask
-    
-    init(_ task: URLSessionTask) {
-        self.task = task
-    }
-    
-    public func cancel() {
-        task.cancel()
-    }
-    
+extension URLSessionTask: CancellableTask {
     public var isCancelled: Bool {
         get {
-            return task.state == .canceling
+            return state == .canceling
         }
     }
 }
@@ -98,39 +88,39 @@ extension URLSession {
      
      [OMGHTTPURLRQ]: https://github.com/mxcl/OMGHTTPURLRQ
      */
-    public func dataTask(_: PMKNamespacer, with convertible: URLRequestConvertible, cancel: CancelMode) -> Promise<(data: Data, response: URLResponse)> {
-        var task: URLSessionTask?
+    public func dataTask(_: PMKNamespacer, with convertible: URLRequestConvertible, cancel: CancelContext) -> Promise<(data: Data, response: URLResponse)> {
+        var task: URLSessionTask!
         let promise = Promise<(data: Data, response: URLResponse)>(cancel: cancel) {
             task = self.dataTask(with: convertible.pmkRequest, completionHandler: adapter($0))
-            task!.resume()
+            task.resume()
         }
-        promise.cancellableTask = URLSessionCancellableTask(task!)
+        cancel.replaceLast(task: task)
         return promise
     }
 
-    public func uploadTask(_: PMKNamespacer, with convertible: URLRequestConvertible, from data: Data, cancel: CancelMode) -> Promise<(data: Data, response: URLResponse)> {
-        var task: URLSessionTask?
+    public func uploadTask(_: PMKNamespacer, with convertible: URLRequestConvertible, from data: Data, cancel: CancelContext) -> Promise<(data: Data, response: URLResponse)> {
+        var task: URLSessionTask!
         let promise = Promise<(data: Data, response: URLResponse)>(cancel: cancel) {
             task = self.uploadTask(with: convertible.pmkRequest, from: data, completionHandler: adapter($0))
-            task!.resume()
+            task.resume()
         }
-        promise.cancellableTask = URLSessionCancellableTask(task!)
+        cancel.replaceLast(task: task)
         return promise
     }
 
-    public func uploadTask(_: PMKNamespacer, with convertible: URLRequestConvertible, fromFile file: URL, cancel: CancelMode) -> Promise<(data: Data, response: URLResponse)> {
-        var task: URLSessionTask?
+    public func uploadTask(_: PMKNamespacer, with convertible: URLRequestConvertible, fromFile file: URL, cancel: CancelContext) -> Promise<(data: Data, response: URLResponse)> {
+        var task: URLSessionTask!
         let promise = Promise<(data: Data, response: URLResponse)>(cancel: cancel) {
             task = self.uploadTask(with: convertible.pmkRequest, fromFile: file, completionHandler: adapter($0))
-            task!.resume()
+            task.resume()
         }
-        promise.cancellableTask = URLSessionCancellableTask(task!)
+        cancel.replaceLast(task: task)
         return promise
     }
 
     /// - Remark: we force a `to` parameter because Apple deletes the downloaded file immediately after the underyling completion handler returns.
-    public func downloadTask(_: PMKNamespacer, with convertible: URLRequestConvertible, to saveLocation: URL, cancel: CancelMode) -> Promise<(saveLocation: URL, response: URLResponse)> {
-        var task: URLSessionTask?
+    public func downloadTask(_: PMKNamespacer, with convertible: URLRequestConvertible, to saveLocation: URL, cancel: CancelContext) -> Promise<(saveLocation: URL, response: URLResponse)> {
+        var task: URLSessionTask!
         let promise = Promise<(saveLocation: URL, response: URLResponse)> { seal in
             task = downloadTask(with: convertible.pmkRequest, completionHandler: { tmp, rsp, err in
                 if let error = err {
@@ -146,9 +136,9 @@ extension URLSession {
                     seal.reject(PMKError.invalidCallingConvention)
                 }
             })
-            task!.resume()
+            task.resume()
         }
-        promise.cancellableTask = URLSessionCancellableTask(task!)
+        cancel.replaceLast(task: task)
         return promise
     }
 }
