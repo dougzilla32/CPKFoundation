@@ -1,7 +1,7 @@
 import Foundation
 import PromiseKit
 #if !CPKCocoaPods
-import CancellablePromiseKit
+import CancelForPromiseKit
 #endif
 
 extension URLSessionTask: CancellableTask {

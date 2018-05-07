@@ -1,6 +1,6 @@
 import CPKFoundation
 import Foundation
-import CancellablePromiseKit
+import CancelForPromiseKit
 import XCTest
 
 #if os(macOS)
