@@ -1,21 +1,21 @@
-# PromiseKit Foundation Extensions ![Build Status]
+# CancelForPromiseKit Foundation Extensions ![Build Status]
 
-This project adds promises to the Swift Foundation framework.
+This project adds cancellable promises to the Swift Foundation framework.
 
-We support iOS, tvOS, watchOS, macOS and Linux, Swift 3.0, 3.1, 3.2, 4.0 and 4.1.
+We support iOS, tvOS, watchOS, macOS, Swift 3.0, 3.1, 3.2, 4.0 and 4.1.
 
 ## CococaPods
 
 ```ruby
-pod "PromiseKit/Foundation", "~> 6.0"
+pod "CancelForPromiseKit/Foundation", "~> 1.0"
 ```
 
-The extensions are built into `PromiseKit.framework` thus nothing else is needed.
+The extensions are built into `CancelForPromiseKit.framework` thus nothing else is needed.
 
 ## Carthage
 
 ```ruby
-github "PromiseKit/Foundation" ~> 3.0
+github "CancelForPromiseKit/Foundation" ~> 1.0
 ```
 
 The extensions are built into their own framework:
@@ -23,13 +23,13 @@ The extensions are built into their own framework:
 ```swift
 // swift
 import PromiseKit
-import PMKFoundation
+import CPKFoundation
 ```
 
 ```objc
 // objc
 @import PromiseKit;
-@import PMKFoundation;
+@import CPKFoundation;
 ```
 
 ## SwiftPM
@@ -37,10 +37,10 @@ import PMKFoundation
 ```swift
 let package = Package(
     dependencies: [
-        .Package(url: "https://github.com/PromiseKit/Foundation.git", majorVersion: 3)
+        .Package(url: "https://github.com/CancelForPromiseKit/Foundation.git", majorVersion: 1)
     ]
 )
 ```
 
 
-[Build Status]: https://travis-ci.org/PromiseKit/Foundation.svg?branch=master
+[Build Status]: https://travis-ci.org/CancelForPromiseKit/Foundation.svg?branch=master
