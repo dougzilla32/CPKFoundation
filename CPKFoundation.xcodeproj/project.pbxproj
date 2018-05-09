@@ -38,6 +38,7 @@
 		912F4C24209CE8080037EF4C /* Pods_CancellablePromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_CancellablePromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		912F4C26209CE80D0037EF4C /* CancellablePromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CancellablePromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		912F4C28209CFE070037EF4C /* OHHTTPStubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OHHTTPStubs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91353BAF20A365F500254354 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 		91436DB520A0EB75004E99DB /* CancelForPromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CancelForPromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91436DB720A0EB75004E99DB /* Pods_CancelForPromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_CancelForPromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -67,6 +68,7 @@
 		63C7FF9D1D5BEE09003BAE60 = {
 			isa = PBXGroup;
 			children = (
+				91353BAF20A365F500254354 /* README.markdown */,
 				63C700091D5C0253003BAE60 /* Info.plist */,
 				63C7FFA91D5BEE09003BAE60 /* Sources */,
 				63C7FFF31D5C020D003BAE60 /* Tests */,
