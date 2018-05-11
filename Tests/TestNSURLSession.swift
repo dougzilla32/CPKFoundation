@@ -15,14 +15,14 @@ class NSURLSessionTests: XCTestCase {
         let ex = expectation(description: "")
         let rq = URLRequest(url: URL(string: "http://example.com")!)
         let context = CancelContext()
-        firstly {
-            URLSession.shared.dataTask(.promise, with: rq, cancel: context)
-        }.compactMap {
+        firstlyCC(cancel: context) {
+            URLSession.shared.dataTaskCC(.promise, with: rq)
+        }.compactMapCC {
             try JSONSerialization.jsonObject(with: $0.data) as? NSDictionary
-        }.done { rsp in
+        }.doneCC { rsp in
             XCTAssertEqual(json, rsp)
             XCTFail()
-        }.catch(policy: .allErrors) { error in
+        }.catchCC(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail()
         }
         context.cancel()
@@ -44,12 +44,12 @@ class NSURLSessionTests: XCTestCase {
         let rq = URLRequest(url: URL(string: "http://example.com")!)
 
         let context = CancelContext()
-        after(.milliseconds(100)).then {
-            URLSession.shared.dataTask(.promise, with: rq, cancel: context)
-        }.done { x in
+        afterCC(.milliseconds(100), cancel: context).thenCC {
+            URLSession.shared.dataTaskCC(.promise, with: rq)
+        }.doneCC { x in
             XCTAssertEqual(x.data, dummy)
             ex.fulfill()
-        }.catch(policy: .allErrors) { error in
+        }.catchCC(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail()
         }
         context.cancel()
@@ -70,12 +70,12 @@ class NSURLSessionTests: XCTestCase {
         let rq = URLRequest(url: URL(string: "http://example.com")!)
 
         let context = CancelContext()
-        after(.milliseconds(100)).then {
-            URLSession.shared.dataTask(.promise, with: rq, cancel: context)
-        }.map(String.init).done {
+        afterCC(.milliseconds(100), cancel: context).thenCC {
+            URLSession.shared.dataTaskCC(.promise, with: rq)
+        }.mapCC(String.init).done {
             XCTAssertEqual($0, dummy)
             ex.fulfill()
-        }.catch(policy: .allErrors) { error in
+        }.catchCC(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail()
         }
         context.cancel()

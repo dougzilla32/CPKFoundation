@@ -88,41 +88,45 @@ extension URLSession {
      
      [OMGHTTPURLRQ]: https://github.com/mxcl/OMGHTTPURLRQ
      */
-    public func dataTask(_: PMKNamespacer, with convertible: URLRequestConvertible, cancel: CancelContext) -> Promise<(data: Data, response: URLResponse)> {
+    public func dataTaskCC(_: PMKNamespacer, with convertible: URLRequestConvertible, cancel: CancelContext? = nil) -> Promise<(data: Data, response: URLResponse)> {
         var task: URLSessionTask!
-        let promise = Promise<(data: Data, response: URLResponse)>(cancel: cancel) {
+        let cancelContext = cancel ?? CancelContext()
+        let promise = Promise<(data: Data, response: URLResponse)>(cancel: cancelContext) {
             task = self.dataTask(with: convertible.pmkRequest, completionHandler: adapter($0))
             task.resume()
         }
-        cancel.replaceLast(task: task)
+        cancelContext.replaceLast(task: task)
         return promise
     }
 
-    public func uploadTask(_: PMKNamespacer, with convertible: URLRequestConvertible, from data: Data, cancel: CancelContext) -> Promise<(data: Data, response: URLResponse)> {
+    public func uploadTaskCC(_: PMKNamespacer, with convertible: URLRequestConvertible, from data: Data, cancel: CancelContext? = nil) -> Promise<(data: Data, response: URLResponse)> {
         var task: URLSessionTask!
-        let promise = Promise<(data: Data, response: URLResponse)>(cancel: cancel) {
+        let cancelContext = cancel ?? CancelContext()
+        let promise = Promise<(data: Data, response: URLResponse)>(cancel: cancelContext) {
             task = self.uploadTask(with: convertible.pmkRequest, from: data, completionHandler: adapter($0))
             task.resume()
         }
-        cancel.replaceLast(task: task)
+        cancelContext.replaceLast(task: task)
         return promise
     }
 
-    public func uploadTask(_: PMKNamespacer, with convertible: URLRequestConvertible, fromFile file: URL, cancel: CancelContext) -> Promise<(data: Data, response: URLResponse)> {
+    public func uploadTaskCC(_: PMKNamespacer, with convertible: URLRequestConvertible, fromFile file: URL, cancel: CancelContext? = nil) -> Promise<(data: Data, response: URLResponse)> {
         var task: URLSessionTask!
-        let promise = Promise<(data: Data, response: URLResponse)>(cancel: cancel) {
+        let cancelContext = cancel ?? CancelContext()
+        let promise = Promise<(data: Data, response: URLResponse)>(cancel: cancelContext) {
             task = self.uploadTask(with: convertible.pmkRequest, fromFile: file, completionHandler: adapter($0))
             task.resume()
         }
-        cancel.replaceLast(task: task)
+        cancelContext.replaceLast(task: task)
         return promise
     }
 
     /// - Remark: we force a `to` parameter because Apple deletes the downloaded file immediately after the underyling completion handler returns.
-    public func downloadTask(_: PMKNamespacer, with convertible: URLRequestConvertible, to saveLocation: URL, cancel: CancelContext) -> Promise<(saveLocation: URL, response: URLResponse)> {
+    public func downloadTaskCC(_: PMKNamespacer, with convertible: URLRequestConvertible, to saveLocation: URL, cancel: CancelContext? = nil) -> Promise<(saveLocation: URL, response: URLResponse)> {
         var task: URLSessionTask!
-        let promise = Promise<(saveLocation: URL, response: URLResponse)> { seal in
-            task = downloadTask(with: convertible.pmkRequest, completionHandler: { tmp, rsp, err in
+        let cancelContext = cancel ?? CancelContext()
+        let promise = Promise<(saveLocation: URL, response: URLResponse)>(cancel: cancelContext) { seal in
+            task = self.downloadTask(with: convertible.pmkRequest, completionHandler: { tmp, rsp, err in
                 if let error = err {
                     seal.reject(error)
                 } else if let rsp = rsp, let tmp = tmp {
@@ -138,7 +142,7 @@ extension URLSession {
             })
             task.resume()
         }
-        cancel.replaceLast(task: task)
+        cancelContext.replaceLast(task: task)
         return promise
     }
 }

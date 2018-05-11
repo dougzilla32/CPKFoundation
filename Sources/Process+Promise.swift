@@ -46,7 +46,7 @@ extension Process {
              print(str)
          }
      */
-    public func launch(_: PMKNamespacer, cancel: CancelContext) -> Promise<(out: Pipe, err: Pipe)> {
+    public func launchCC(_: PMKNamespacer, cancel: CancelContext? = nil) -> Promise<(out: Pipe, err: Pipe)> {
         let (stdout, stderr) = (Pipe(), Pipe())
         
         do {
@@ -79,7 +79,7 @@ extension Process {
             }
         }
 
-        return Promise(cancel: cancel, task: self) { seal in
+        return Promise(cancel: cancel ?? CancelContext(), task: self) { seal in
             q.async {
                 self.waitUntilExit()
 

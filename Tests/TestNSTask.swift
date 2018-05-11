@@ -13,10 +13,10 @@ class NSTaskTests: XCTestCase {
         task.arguments = ["ls"]
         
         let context = CancelContext()
-        task.launch(.promise, cancel: context).done { stdout, _ in
+        task.launchCC(.promise, cancel: context).doneCC { stdout, _ in
             let stdout = String(data: stdout.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
             XCTAssertEqual(stdout, "bar\n")
-        }.catch(policy: .allErrors) { error in
+        }.catchCC(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail()
         }
         context.cancel()
@@ -32,9 +32,9 @@ class NSTaskTests: XCTestCase {
         task.arguments = ["-l", dir]
 
         let context = CancelContext()
-        task.launch(.promise, cancel: context).done { _ in
+        task.launchCC(.promise, cancel: context).doneCC { _ in
             XCTFail()
-        }.catch(policy: .allErrors) { error in
+        }.catchCC(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail("unexpected error \(error)")
         }
         context.cancel()
