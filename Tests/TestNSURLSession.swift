@@ -72,7 +72,7 @@ class NSURLSessionTests: XCTestCase {
         let context = CancelContext()
         afterCC(.milliseconds(100), cancel: context).thenCC {
             URLSession.shared.dataTaskCC(.promise, with: rq)
-        }.mapCC(String.init).done {
+        }.mapCC(String.init).doneCC {
             XCTAssertEqual($0, dummy)
             ex.fulfill()
         }.catchCC(policy: .allErrors) { error in
