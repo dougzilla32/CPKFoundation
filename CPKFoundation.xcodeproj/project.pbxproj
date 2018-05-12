@@ -14,6 +14,8 @@
 		63C7FFF71D5C020D003BAE60 /* CPKFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C7FFA71D5BEE09003BAE60 /* CPKFoundation.framework */; };
 		91436DB620A0EB75004E99DB /* CancelForPromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91436DB520A0EB75004E99DB /* CancelForPromiseKit.framework */; };
 		91436DB820A0EB75004E99DB /* Pods_CancelForPromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91436DB720A0EB75004E99DB /* Pods_CancelForPromiseKit.framework */; };
+		91F09FAD20A65A60005E7A4E /* NSNotificationCenter+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F09FAC20A65A60005E7A4E /* NSNotificationCenter+Promise.swift */; };
+		91F09FAF20A6C513005E7A4E /* NSObject+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F09FAE20A6C513005E7A4E /* NSObject+Promise.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,8 @@
 		91353BAF20A365F500254354 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 		91436DB520A0EB75004E99DB /* CancelForPromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CancelForPromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91436DB720A0EB75004E99DB /* Pods_CancelForPromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_CancelForPromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91F09FAC20A65A60005E7A4E /* NSNotificationCenter+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotificationCenter+Promise.swift"; sourceTree = "<group>"; };
+		91F09FAE20A6C513005E7A4E /* NSObject+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Promise.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +88,10 @@
 		63C7FFA91D5BEE09003BAE60 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				63C7FFD51D5C00F2003BAE60 /* Process+Promise.swift */,
+				91F09FAC20A65A60005E7A4E /* NSNotificationCenter+Promise.swift */,
+				91F09FAE20A6C513005E7A4E /* NSObject+Promise.swift */,
 				63C7FFDB1D5C00F2003BAE60 /* NSURLSession+Promise.swift */,
+				63C7FFD51D5C00F2003BAE60 /* Process+Promise.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -200,8 +206,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91F09FAD20A65A60005E7A4E /* NSNotificationCenter+Promise.swift in Sources */,
 				63C7FFE91D5C00F2003BAE60 /* NSURLSession+Promise.swift in Sources */,
 				63C7FFE31D5C00F2003BAE60 /* Process+Promise.swift in Sources */,
+				91F09FAF20A6C513005E7A4E /* NSObject+Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
