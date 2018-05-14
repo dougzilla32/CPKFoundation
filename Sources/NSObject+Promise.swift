@@ -27,19 +27,32 @@ extension NSObject {
      - SeeAlso: Apple’s KVO documentation.
      */
     public func observeCC(_: PMKNamespacer, keyPath: String, cancel: CancelContext? = nil) -> Promise<Any?> {
-        return Promise(cancel: cancel ?? CancelContext()) { seal in
-            KVOProxy(observee: self, keyPath: keyPath, resolve: seal.fulfill)
-        }
+        var task: CancellableTask!
+        var reject: ((Error) -> Void)!
+        
+        let promise = Promise<Any?> { seal in
+            reject = seal.reject
+            task = KVOProxy(observee: self, keyPath: keyPath, resolve: seal.fulfill)
+         }
+        
+        let cancelContext = cancel ?? CancelContext()
+        cancelContext.append(task: task, reject: reject)
+        promise.cancelContext = cancelContext
+        return promise
     }
 }
 
-private class KVOProxy: NSObject {
+private class KVOProxy: NSObject, CancellableTask {
     var retainCycle: KVOProxy?
     let fulfill: (Any?) -> Void
+    let observeeObject: NSObject
+    let observeeKeyPath: String
     
     @discardableResult
     init(observee: NSObject, keyPath: String, resolve: @escaping (Any?) -> Void) {
         fulfill = resolve
+        observeeObject = observee
+        observeeKeyPath = keyPath
         super.init()
         observee.addObserver(self, forKeyPath: keyPath, options: NSKeyValueObservingOptions.new, context: pointer)
         retainCycle = self
@@ -54,6 +67,15 @@ private class KVOProxy: NSObject {
             }
         }
     }
+    
+    func cancel() {
+        if !isCancelled {
+            observeeObject.removeObserver(self, forKeyPath: observeeKeyPath)
+            isCancelled = true
+        }
+    }
+    
+    var isCancelled = false
     
     private lazy var pointer: UnsafeMutableRawPointer = {
         return Unmanaged<KVOProxy>.passUnretained(self).toOpaque()

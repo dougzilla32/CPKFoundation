@@ -29,11 +29,27 @@ extension NotificationCenter {
 #else
         let id = addObserver(forName: name, object: object, queue: nil, usingBlock: resolver.fulfill)
 #endif
+        
         let cancelContext = cancel ?? CancelContext()
-        cancelContext.append(task: nil, reject: resolver.reject)
+        cancelContext.append(task: ObserverTask { self.removeObserver(id) }, reject: resolver.reject)
         promise.cancelContext = cancelContext
 
-        let _ = promise.ensureCC { _ in self.removeObserver(id) }
+        let _ = promise.ensureCC { self.removeObserver(id) }
         return promise
     }
+}
+
+class ObserverTask: CancellableTask {
+    let cancelBlock: () -> Void
+    
+    init(cancelBlock: @escaping () -> Void) {
+        self.cancelBlock = cancelBlock
+    }
+    
+    func cancel() {
+        cancelBlock()
+        isCancelled = true
+    }
+    
+    var isCancelled = false
 }

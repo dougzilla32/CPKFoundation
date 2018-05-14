@@ -25,6 +25,7 @@ extension URLSessionTask: CancellableTask {
 
  And then in your sources:
 
+    import PromiseKit
     import CancellablePromiseKit
 */
 extension URLSession {
@@ -90,42 +91,59 @@ extension URLSession {
      */
     public func dataTaskCC(_: PMKNamespacer, with convertible: URLRequestConvertible, cancel: CancelContext? = nil) -> Promise<(data: Data, response: URLResponse)> {
         var task: URLSessionTask!
-        let cancelContext = cancel ?? CancelContext()
-        let promise = Promise<(data: Data, response: URLResponse)>(cancel: cancelContext) {
+        var reject: ((Error) -> Void)!
+
+        let promise = Promise<(data: Data, response: URLResponse)> {
+            reject = $0.reject
             task = self.dataTask(with: convertible.pmkRequest, completionHandler: adapter($0))
             task.resume()
         }
-        cancelContext.replaceLast(task: task)
+
+        let cancelContext = cancel ?? CancelContext()
+        promise.cancelContext = cancelContext
+        cancelContext.append(task: task, reject: reject)
         return promise
     }
 
     public func uploadTaskCC(_: PMKNamespacer, with convertible: URLRequestConvertible, from data: Data, cancel: CancelContext? = nil) -> Promise<(data: Data, response: URLResponse)> {
         var task: URLSessionTask!
-        let cancelContext = cancel ?? CancelContext()
-        let promise = Promise<(data: Data, response: URLResponse)>(cancel: cancelContext) {
+        var reject: ((Error) -> Void)!
+        
+        let promise = Promise<(data: Data, response: URLResponse)> {
+            reject = $0.reject
             task = self.uploadTask(with: convertible.pmkRequest, from: data, completionHandler: adapter($0))
             task.resume()
         }
-        cancelContext.replaceLast(task: task)
+
+        let cancelContext = cancel ?? CancelContext()
+        promise.cancelContext = cancelContext
+        cancelContext.append(task: task, reject: reject)
         return promise
     }
 
     public func uploadTaskCC(_: PMKNamespacer, with convertible: URLRequestConvertible, fromFile file: URL, cancel: CancelContext? = nil) -> Promise<(data: Data, response: URLResponse)> {
         var task: URLSessionTask!
-        let cancelContext = cancel ?? CancelContext()
-        let promise = Promise<(data: Data, response: URLResponse)>(cancel: cancelContext) {
+        var reject: ((Error) -> Void)!
+
+        let promise = Promise<(data: Data, response: URLResponse)> {
+            reject = $0.reject
             task = self.uploadTask(with: convertible.pmkRequest, fromFile: file, completionHandler: adapter($0))
             task.resume()
         }
-        cancelContext.replaceLast(task: task)
+
+        let cancelContext = cancel ?? CancelContext()
+        promise.cancelContext = cancelContext
+        cancelContext.append(task: task, reject: reject)
         return promise
     }
 
     /// - Remark: we force a `to` parameter because Apple deletes the downloaded file immediately after the underyling completion handler returns.
     public func downloadTaskCC(_: PMKNamespacer, with convertible: URLRequestConvertible, to saveLocation: URL, cancel: CancelContext? = nil) -> Promise<(saveLocation: URL, response: URLResponse)> {
         var task: URLSessionTask!
-        let cancelContext = cancel ?? CancelContext()
-        let promise = Promise<(saveLocation: URL, response: URLResponse)>(cancel: cancelContext) { seal in
+        var reject: ((Error) -> Void)!
+
+        let promise = Promise<(saveLocation: URL, response: URLResponse)> { seal in
+            reject = seal.reject
             task = self.downloadTask(with: convertible.pmkRequest, completionHandler: { tmp, rsp, err in
                 if let error = err {
                     seal.reject(error)
@@ -142,7 +160,10 @@ extension URLSession {
             })
             task.resume()
         }
-        cancelContext.replaceLast(task: task)
+
+        let cancelContext = cancel ?? CancelContext()
+        promise.cancelContext = cancelContext
+        cancelContext.append(task: task, reject: reject)
         return promise
     }
 }
