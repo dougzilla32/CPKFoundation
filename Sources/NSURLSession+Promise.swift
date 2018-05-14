@@ -30,57 +30,83 @@ extension URLSessionTask: CancellableTask {
 */
 extension URLSession {
     /**
-     Example usage:
+     Example usage with explicit cancel context:
 
-         firstly {
-             URLSession.shared.dataTask(.promise, with: rq)
-         }.compactMap { data, _ in
+         let context = CancelContext()
+         firstlyCC(cancel: context) {
+             URLSession.shared.dataTaskCC(.promise, with: rq)
+         }.compactMapCC { data, _ in
              try JSONSerialization.jsonObject(with: data) as? [String: Any]
-         }.then { json in
+         }.thenCC { json in
              //…
          }
+         //…
+         context.cancel()
 
+     Example usage with implicit cancel context:
+     
+         let promise = firstlyCC {
+             URLSession.shared.dataTaskCC(.promise, with: rq)
+         }.compactMapCC { data, _ in
+             try JSONSerialization.jsonObject(with: data) as? [String: Any]
+         }.thenCC { json in
+             //…
+         }
+         //…
+         promise.cancel()
+     
      We recommend the use of [OMGHTTPURLRQ] which allows you to construct correct REST requests:
 
-         firstly {
+         firstlyCC(cancel: context) {
              let rq = OMGHTTPURLRQ.POST(url, json: parameters)
-             URLSession.shared.dataTask(.promise, with: rq)
-         }.then { data, urlResponse in
+             URLSession.shared.dataTaskCC(.promise, with: rq)
+         }.thenCC { data, urlResponse in
              //…
          }
+         //…
+         context.cancel()
 
      We provide a convenience initializer for `String` specifically for this promise:
      
-         firstly {
-             URLSession.shared.dataTask(.promise, with: rq)
-         }.compactMap(String.init).then { string in
+         let context = CancelContext()
+         firstlyCC(cancel: context) {
+             URLSession.shared.dataTaskCC(.promise, with: rq)
+         }.compactMapCC(String.init).thenCC { string in
              // decoded per the string encoding specified by the server
-         }.then { string in
+         }.thenCC { string in
              print("response: string")
          }
+         //…
+         context.cancel()
      
      Other common types can be easily decoded using compactMap also:
      
-         firstly {
-             URLSession.shared.dataTask(.promise, with: rq)
-         }.compactMap {
+         let context = CancelContext()
+         firstlyCC(cancel: context) {
+             URLSession.shared.dataTaskCC(.promise, with: rq)
+         }.compactMapCC {
              UIImage(data: $0)
-         }.then {
+         }.thenCC {
              self.imageView.image = $0
          }
+         //…
+         context.cancel()
 
      Though if you do decode the image this way, we recommend inflating it on a background thread
      first as this will improve main thread performance when rendering the image:
      
-         firstly {
-             URLSession.shared.dataTask(.promise, with: rq)
-         }.compactMap(on: QoS.userInitiated) { data, _ in
+         let context = CancelContext()
+         firstlyCC(cancel: context) {
+             URLSession.shared.dataTaskCC(.promise, with: rq)
+         }.compactMapCC(on: QoS.userInitiated) { data, _ in
              guard let img = UIImage(data: data) else { return nil }
              _ = cgImage?.dataProvider?.data
              return img
-         }.then {
+         }.thenCC {
              self.imageView.image = $0
          }
+         //…
+         context.cancel()
 
      - Parameter convertible: A URL or URLRequest.
      - Returns: A promise that represents the URL request.
