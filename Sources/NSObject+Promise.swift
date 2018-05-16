@@ -22,7 +22,7 @@ import CancelForPromiseKit
  */
 extension NSObject {
     /**
-     - Returns: A promise that resolves when the provided keyPath changes.
+     - Returns: A promise that resolves when the provided keyPath changes, or when the promise is cancelled.
      - Warning: *Important* The promise must not outlive the object under observation.
      - SeeAlso: Apple’s KVO documentation.
      */

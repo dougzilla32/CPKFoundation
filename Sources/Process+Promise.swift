@@ -35,7 +35,7 @@ extension Process: CancellableTask {
  */
 extension Process {
     /**
-     Launches the receiver and resolves when it exits.
+     Launches the receiver and resolves when it exits, or when the promise is cancelled.
      
          let proc = Process()
          proc.launchPath = "/bin/ls"
