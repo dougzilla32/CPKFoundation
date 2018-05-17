@@ -36,6 +36,8 @@
 		63C7FFDB1D5C00F2003BAE60 /* NSURLSession+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSURLSession+Promise.swift"; path = "Sources/NSURLSession+Promise.swift"; sourceTree = SOURCE_ROOT; };
 		63C7FFF21D5C020D003BAE60 /* CPKNSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CPKNSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C7FFFF1D5C021F003BAE60 /* TestNSTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestNSTask.swift; path = Tests/TestNSTask.swift; sourceTree = SOURCE_ROOT; };
+		91195B5520AD5AB700074F63 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		91195B5620AD5AC300074F63 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		91353BAF20A365F500254354 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 		91436DB520A0EB75004E99DB /* CancelForPromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CancelForPromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91436DB720A0EB75004E99DB /* Pods_CancelForPromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_CancelForPromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +90,7 @@
 		63C7FFA91D5BEE09003BAE60 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				91195B5520AD5AB700074F63 /* .swiftlint.yml */,
 				91F09FAC20A65A60005E7A4E /* NSNotificationCenter+Promise.swift */,
 				91F09FAE20A6C513005E7A4E /* NSObject+Promise.swift */,
 				63C7FFDB1D5C00F2003BAE60 /* NSURLSession+Promise.swift */,
@@ -99,6 +102,7 @@
 		63C7FFF31D5C020D003BAE60 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				91195B5620AD5AC300074F63 /* .swiftlint.yml */,
 				63C7FFFF1D5C021F003BAE60 /* TestNSTask.swift */,
 				63C700021D5C021F003BAE60 /* TestNSURLSession.swift */,
 			);
@@ -134,6 +138,7 @@
 				63C7FFA21D5BEE09003BAE60 /* Sources */,
 				63C7FFA31D5BEE09003BAE60 /* Frameworks */,
 				63C7FFA41D5BEE09003BAE60 /* Headers */,
+				91195B5220AD5A5700074F63 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -150,6 +155,7 @@
 			buildPhases = (
 				63C7FFEE1D5C020D003BAE60 /* Sources */,
 				63C7FFEF1D5C020D003BAE60 /* Frameworks */,
+				91195B5120AD5A5000074F63 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -200,6 +206,35 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		91195B5120AD5A5000074F63 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n(cd Tests ; swiftlint)\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		91195B5220AD5A5700074F63 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n(cd Sources ; swiftlint)\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		63C7FFA21D5BEE09003BAE60 /* Sources */ = {

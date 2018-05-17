@@ -6,9 +6,7 @@ import CancelForPromiseKit
 
 extension URLSessionTask: CancellableTask {
     public var isCancelled: Bool {
-        get {
-            return state == .canceling
-        }
+        return state == .canceling
     }
 }
 

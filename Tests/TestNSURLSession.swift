@@ -21,9 +21,9 @@ class NSURLSessionTests: XCTestCase {
             try JSONSerialization.jsonObject(with: $0.data) as? NSDictionary
         }.doneCC { rsp in
             XCTAssertEqual(json, rsp)
-            XCTFail()
+            XCTFail("failed to cancel session")
         }.catchCC(policy: .allErrors) { error in
-            error.isCancelled ? ex.fulfill() : XCTFail()
+            error.isCancelled ? ex.fulfill() : XCTFail("Error: \(error)")
         }
         context.cancel()
         waitForExpectations(timeout: 1)
@@ -50,7 +50,7 @@ class NSURLSessionTests: XCTestCase {
             XCTAssertEqual(x.data, dummy)
             ex.fulfill()
         }.catchCC(policy: .allErrors) { error in
-            error.isCancelled ? ex.fulfill() : XCTFail()
+            error.isCancelled ? ex.fulfill() : XCTFail("Error: \(error)")
         }
         context.cancel()
 
@@ -76,7 +76,7 @@ class NSURLSessionTests: XCTestCase {
             XCTAssertEqual($0, dummy)
             ex.fulfill()
         }.catchCC(policy: .allErrors) { error in
-            error.isCancelled ? ex.fulfill() : XCTFail()
+            error.isCancelled ? ex.fulfill() : XCTFail("Error: \(error)")
         }
         context.cancel()
 

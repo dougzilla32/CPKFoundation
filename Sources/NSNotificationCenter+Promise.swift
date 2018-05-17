@@ -34,7 +34,7 @@ extension NotificationCenter {
         cancelContext.append(task: ObserverTask { self.removeObserver(id) }, reject: resolver.reject)
         promise.cancelContext = cancelContext
 
-        let _ = promise.ensureCC { self.removeObserver(id) }
+        _ = promise.ensureCC { self.removeObserver(id) }
         return promise
     }
 }

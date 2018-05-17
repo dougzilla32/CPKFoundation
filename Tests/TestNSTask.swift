@@ -17,7 +17,7 @@ class NSTaskTests: XCTestCase {
             let stdout = String(data: stdout.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
             XCTAssertEqual(stdout, "bar\n")
         }.catchCC(policy: .allErrors) { error in
-            error.isCancelled ? ex.fulfill() : XCTFail()
+            error.isCancelled ? ex.fulfill() : XCTFail("Error: \(error)")
         }
         context.cancel()
         waitForExpectations(timeout: 3)
@@ -33,7 +33,7 @@ class NSTaskTests: XCTestCase {
 
         let context = CancelContext()
         task.launchCC(.promise, cancel: context).doneCC { _ in
-            XCTFail()
+            XCTFail("failed to cancel process")
         }.catchCC(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail("unexpected error \(error)")
         }

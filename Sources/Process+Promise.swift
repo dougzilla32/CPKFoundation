@@ -12,9 +12,7 @@ extension Process: CancellableTask {
     }
     
     public var isCancelled: Bool {
-        get {
-            return !isRunning
-        }
+        return !isRunning
     }
 }
 
