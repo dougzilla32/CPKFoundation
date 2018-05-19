@@ -36,7 +36,7 @@ extension NSObject {
          }
         
         let cancelContext = cancel ?? CancelContext()
-        cancelContext.append(task: task, reject: reject)
+        cancelContext.append(task: task, reject: reject, description: PromiseDescription(promise))
         promise.cancelContext = cancelContext
         return promise
     }

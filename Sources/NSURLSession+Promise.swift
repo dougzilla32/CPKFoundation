@@ -125,7 +125,7 @@ extension URLSession {
 
         let cancelContext = cancel ?? CancelContext()
         promise.cancelContext = cancelContext
-        cancelContext.append(task: task, reject: reject)
+        cancelContext.append(task: task, reject: reject, description: PromiseDescription(promise))
         return promise
     }
 
@@ -141,7 +141,7 @@ extension URLSession {
 
         let cancelContext = cancel ?? CancelContext()
         promise.cancelContext = cancelContext
-        cancelContext.append(task: task, reject: reject)
+        cancelContext.append(task: task, reject: reject, description: PromiseDescription(promise))
         return promise
     }
 
@@ -157,7 +157,7 @@ extension URLSession {
 
         let cancelContext = cancel ?? CancelContext()
         promise.cancelContext = cancelContext
-        cancelContext.append(task: task, reject: reject)
+        cancelContext.append(task: task, reject: reject, description: PromiseDescription(promise))
         return promise
     }
 
@@ -187,7 +187,7 @@ extension URLSession {
 
         let cancelContext = cancel ?? CancelContext()
         promise.cancelContext = cancelContext
-        cancelContext.append(task: task, reject: reject)
+        cancelContext.append(task: task, reject: reject, description: PromiseDescription(promise))
         return promise
     }
 }
