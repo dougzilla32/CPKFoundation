@@ -1,7 +1,7 @@
 import Foundation
 import PromiseKit
 #if !CPKCocoaPods
-import CancelForPromiseKit
+@testable import CancelForPromiseKit
 #endif
 
 #if os(macOS)

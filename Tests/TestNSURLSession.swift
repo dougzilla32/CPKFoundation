@@ -1,7 +1,7 @@
 import CPKFoundation
 import OHHTTPStubs
 import PromiseKit
-import CancelForPromiseKit
+@testable import CancelForPromiseKit
 import XCTest
 
 class NSURLSessionTests: XCTestCase {
