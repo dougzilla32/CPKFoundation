@@ -1,7 +1,7 @@
 import Foundation
 import PromiseKit
 #if !CPKCocoaPods
-@testable import CancelForPromiseKit
+import CancelForPromiseKit
 #endif
 
 /**
@@ -22,19 +22,17 @@ import PromiseKit
  */
 extension NotificationCenter {
     /// Observe the named notification once
-    public func observeCC(once name: Notification.Name, object: Any? = nil, cancel: CancelContext? = nil) -> Promise<Notification> {
-        let (promise, resolver) = Promise<Notification>.pending()
+    public func observeCC(once name: Notification.Name, object: Any? = nil) -> CancellablePromise<Notification> {
+        let (promise, resolver) = CancellablePromise<Notification>.pending()
 #if !os(Linux)
         let id = addObserver(forName: name, object: object, queue: nil, using: resolver.fulfill)
 #else
         let id = addObserver(forName: name, object: object, queue: nil, usingBlock: resolver.fulfill)
 #endif
         
-        let cancelContext = cancel ?? CancelContext()
-        cancelContext.append(task: ObserverTask { self.removeObserver(id) }, reject: resolver.reject, description: PromiseDescription(promise))
-        promise.cancelContext = cancelContext
-
-        _ = promise.ensureCC { self.removeObserver(id) }
+        promise.cancelContext.append(task: ObserverTask { self.removeObserver(id) }, reject: resolver.reject, description: PromiseDescription(promise))
+ 
+        _ = promise.ensure { self.removeObserver(id) }
         return promise
     }
 }

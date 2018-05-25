@@ -1,7 +1,7 @@
 import CPKFoundation
 import OHHTTPStubs
 import PromiseKit
-@testable import CancelForPromiseKit
+import CancelForPromiseKit
 import XCTest
 
 class NSURLSessionTests: XCTestCase {
@@ -14,17 +14,16 @@ class NSURLSessionTests: XCTestCase {
 
         let ex = expectation(description: "")
         let rq = URLRequest(url: URL(string: "http://example.com")!)
-        let context = CancelContext()
-        firstlyCC(cancel: context) {
+        let context = firstly {
             URLSession.shared.dataTaskCC(.promise, with: rq)
-        }.compactMapCC {
+        }.compactMap {
             try JSONSerialization.jsonObject(with: $0.data) as? NSDictionary
-        }.doneCC { rsp in
+        }.done { rsp in
             XCTAssertEqual(json, rsp)
             XCTFail("failed to cancel session")
-        }.catchCC(policy: .allErrors) { error in
+        }.catch(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail("Error: \(error)")
-        }
+        }.cancelContext
         context.cancel()
         waitForExpectations(timeout: 1)
     }
@@ -43,15 +42,14 @@ class NSURLSessionTests: XCTestCase {
         let ex = expectation(description: "")
         let rq = URLRequest(url: URL(string: "http://example.com")!)
 
-        let context = CancelContext()
-        afterCC(.milliseconds(100), cancel: context).thenCC {
+        let context = afterCC(.milliseconds(100)).then {
             URLSession.shared.dataTaskCC(.promise, with: rq)
-        }.doneCC { x in
+        }.done { x in
             XCTAssertEqual(x.data, dummy)
             ex.fulfill()
-        }.catchCC(policy: .allErrors) { error in
+        }.catch(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail("Error: \(error)")
-        }
+        }.cancelContext
         context.cancel()
 
         waitForExpectations(timeout: 1)
@@ -69,15 +67,14 @@ class NSURLSessionTests: XCTestCase {
         let ex = expectation(description: "")
         let rq = URLRequest(url: URL(string: "http://example.com")!)
 
-        let context = CancelContext()
-        afterCC(.milliseconds(100), cancel: context).thenCC {
+        let context = afterCC(.milliseconds(100)).then {
             URLSession.shared.dataTaskCC(.promise, with: rq)
-        }.mapCC(String.init).doneCC {
+        }.map(String.init).done {
             XCTAssertEqual($0, dummy)
             ex.fulfill()
-        }.catchCC(policy: .allErrors) { error in
+        }.catch(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail("Error: \(error)")
-        }
+        }.cancelContext
         context.cancel()
 
         waitForExpectations(timeout: 1)

@@ -1,6 +1,6 @@
 import CPKFoundation
 import Foundation
-@testable import CancelForPromiseKit
+import CancelForPromiseKit
 import XCTest
 
 #if os(macOS)
@@ -12,13 +12,12 @@ class NSTaskTests: XCTestCase {
         task.launchPath = "/usr/bin/man"
         task.arguments = ["ls"]
         
-        let context = CancelContext()
-        task.launchCC(.promise, cancel: context).doneCC { stdout, _ in
+        let context = task.launchCC(.promise).done { stdout, _ in
             let stdout = String(data: stdout.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
             XCTAssertEqual(stdout, "bar\n")
-        }.catchCC(policy: .allErrors) { error in
+        }.catch(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail("Error: \(error)")
-        }
+        }.cancelContext
         context.cancel()
         waitForExpectations(timeout: 3)
     }
@@ -31,12 +30,11 @@ class NSTaskTests: XCTestCase {
         task.launchPath = "/bin/ls"
         task.arguments = ["-l", dir]
 
-        let context = CancelContext()
-        task.launchCC(.promise, cancel: context).doneCC { _ in
+        let context = task.launchCC(.promise).done { _ in
             XCTFail("failed to cancel process")
-        }.catchCC(policy: .allErrors) { error in
+        }.catch(policy: .allErrors) { error in
             error.isCancelled ? ex.fulfill() : XCTFail("unexpected error \(error)")
-        }
+        }.cancelContext
         context.cancel()
         waitForExpectations(timeout: 3)
     }

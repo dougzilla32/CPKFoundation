@@ -1,7 +1,7 @@
 import Foundation
 import PromiseKit
 #if !CPKCocoaPods
-@testable import CancelForPromiseKit
+import CancelForPromiseKit
 #endif
 
 /**
@@ -26,18 +26,16 @@ extension NSObject {
      - Warning: *Important* The promise must not outlive the object under observation.
      - SeeAlso: Apple’s KVO documentation.
      */
-    public func observeCC(_: PMKNamespacer, keyPath: String, cancel: CancelContext? = nil) -> Promise<Any?> {
+    public func observeCC(_: PMKNamespacer, keyPath: String) -> CancellablePromise<Any?> {
         var task: CancellableTask!
         var reject: ((Error) -> Void)!
         
-        let promise = Promise<Any?> { seal in
+        let promise = CancellablePromise<Any?> { seal in
             reject = seal.reject
             task = KVOProxy(observee: self, keyPath: keyPath, resolve: seal.fulfill)
          }
         
-        let cancelContext = cancel ?? CancelContext()
-        cancelContext.append(task: task, reject: reject, description: PromiseDescription(promise))
-        promise.cancelContext = cancelContext
+        promise.cancelContext.append(task: task, reject: reject, description: PromiseDescription(promise))
         return promise
     }
 }
