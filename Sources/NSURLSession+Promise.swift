@@ -119,7 +119,7 @@ extension URLSession {
             task.resume()
         }
 
-        promise.cancelContext.append(task: task, reject: reject, description: PromiseDescription(promise))
+        promise.appendCancellableTask(task: task, reject: reject)
         return promise
     }
 
@@ -133,7 +133,7 @@ extension URLSession {
             task.resume()
         }
 
-        promise.cancelContext.append(task: task, reject: reject, description: PromiseDescription(promise))
+        promise.appendCancellableTask(task: task, reject: reject)
         return promise
     }
 
@@ -147,7 +147,7 @@ extension URLSession {
             task.resume()
         }
 
-        promise.cancelContext.append(task: task, reject: reject, description: PromiseDescription(promise))
+        promise.appendCancellableTask(task: task, reject: reject)
         return promise
     }
 
@@ -175,7 +175,7 @@ extension URLSession {
             task.resume()
         }
 
-        promise.cancelContext.append(task: task, reject: reject, description: PromiseDescription(promise))
+        promise.appendCancellableTask(task: task, reject: reject)
         return promise
     }
 }

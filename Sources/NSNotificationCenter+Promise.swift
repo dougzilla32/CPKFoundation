@@ -30,7 +30,7 @@ extension NotificationCenter {
         let id = addObserver(forName: name, object: object, queue: nil, usingBlock: resolver.fulfill)
 #endif
         
-        promise.cancelContext.append(task: ObserverTask { self.removeObserver(id) }, reject: resolver.reject, description: PromiseDescription(promise))
+        promise.appendCancellableTask(task: ObserverTask { self.removeObserver(id) }, reject: resolver.reject)
  
         _ = promise.ensure { self.removeObserver(id) }
         return promise

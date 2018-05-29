@@ -35,7 +35,7 @@ extension NSObject {
             task = KVOProxy(observee: self, keyPath: keyPath, resolve: seal.fulfill)
          }
         
-        promise.cancelContext.append(task: task, reject: reject, description: PromiseDescription(promise))
+        promise.appendCancellableTask(task: task, reject: reject)
         return promise
     }
 }
