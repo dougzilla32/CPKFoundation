@@ -23,13 +23,8 @@ The extensions are built into their own framework:
 ```swift
 // swift
 import PromiseKit
+import CancelForPromiseKit
 import CPKFoundation
-```
-
-```objc
-// objc
-@import PromiseKit;
-@import CPKFoundation;
 ```
 
 ## SwiftPM
@@ -41,6 +36,5 @@ let package = Package(
     ]
 )
 ```
-
 
 [Build Status]: https://travis-ci.org/CancelForPromiseKit/Foundation.svg?branch=master
