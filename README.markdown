@@ -1,6 +1,6 @@
 # CancelForPromiseKit Foundation Extensions ![Build Status]
 
-This project adds cancellable promises to the Swift Foundation framework.
+This project adds cancellable promises to [PromiseKit's Foundation extension].
 
 We support iOS, tvOS, watchOS, macOS, Swift 3.0, 3.1, 3.2, 4.0 and 4.1.
 
@@ -38,3 +38,4 @@ let package = Package(
 ```
 
 [Build Status]: https://travis-ci.org/CancelForPromiseKit/Foundation.svg?branch=master
+[PromiseKit's Foundation extension]: https://github.com/PromiseKit/Foundation
