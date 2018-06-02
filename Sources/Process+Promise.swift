@@ -48,17 +48,7 @@ extension Process {
          context.cancel()
      */
     public func launchCC(_: PMKNamespacer) -> CancellablePromise<(out: Pipe, err: Pipe)> {
-        return wrap(self.launch(.promise))
-    }
-
-    func wrap<T>(_ promise: Promise<T>) -> CancellablePromise<T> {
-        return CancellablePromise(task: self as CancellableTask) { seal in
-            promise.done {
-                seal.fulfill($0)
-            }.catch {
-                seal.reject($0)
-            }
-        }
+        return CancellablePromise(task: self, self.launch(.promise))
     }
 }
 
