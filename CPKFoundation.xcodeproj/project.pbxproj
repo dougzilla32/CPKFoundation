@@ -156,6 +156,7 @@
 				63C7FFEE1D5C020D003BAE60 /* Sources */,
 				63C7FFEF1D5C020D003BAE60 /* Frameworks */,
 				91195B5120AD5A5000074F63 /* ShellScript */,
+				91FC9E8720C6618C008B8EFA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -233,6 +234,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n(cd Sources ; swiftlint)\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		91FC9E8720C6618C008B8EFA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "(\n    cd $BUILD_DIR/$CONFIGURATION$EFFECTIVE_PLATFORM_NAME\n    if [ -f \"CPKCLTests.xctest/Contents/Frameworks/libswiftContacts.dylib\" ] ; then\n        for test in *.xctest/Contents/Frameworks ; do\n            if [ \"$test\" != \"CPKCLTests.xctest/Contents/Frameworks\" ] ; then\n                ln -fs ../../../CPKCLTests.xctest/Contents/Frameworks/libswiftContacts.dylib $test/libswiftContacts.dylib\n            fi\n        done\n    fi\n )\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
