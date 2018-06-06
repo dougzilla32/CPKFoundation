@@ -3,6 +3,12 @@ import Foundation
 import CancelForPromiseKit
 import XCTest
 
+// Workaround for error with missing libswiftContacts.dylib, this import causes the
+// library to be included as needed
+#if os(iOS) || os(watchOS) || os(OSX)
+import class Contacts.CNPostalAddress
+#endif
+
 #if os(macOS)
 
 class NSTaskTests: XCTestCase {
