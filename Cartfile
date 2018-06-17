@@ -1,0 +1,2 @@
+github "dougzilla32/CancelForPromiseKit" ~> 1.1
+github "PromiseKit/Foundation" ~> 3.0

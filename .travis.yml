@@ -2,20 +2,20 @@ matrix:
   include:
 #   - {osx_image: xcode8.3,     env: 'SWFT=3.1  PLAT=iOS      DST="OS=10.3.1,name=iPhone SE"',       os: osx, language: swift}
 #   - {osx_image: xcode8.3,     env: 'SWFT=3.1  PLAT=tvOS     DST="OS=10.2,name=Apple TV 1080p"',    os: osx, language: swift}
-    - {osx_image: xcode8.3,     env: 'SWFT=3.1  PLAT=macOS    DST="arch=x86_64"',                    os: osx, language: swift}
+#   - {osx_image: xcode8.3,     env: 'SWFT=3.1  PLAT=macOS    DST="arch=x86_64"',                    os: osx, language: swift}
 #   - {osx_image: xcode8.3,     env: 'SWFT=3.1  PLAT=watchOS  DST="OS=3.2,name=Apple Watch - 38mm"', os: osx, language: swift}
 
 #   - {osx_image: xcode9.2,     env: 'SWFT=3.2  PLAT=iOS      DST="OS=11.2,name=iPhone SE"',         os: osx, language: swift}
 #   - {osx_image: xcode9.2,     env: 'SWFT=3.2  PLAT=tvOS     DST="OS=11.2,name=Apple TV"',          os: osx, language: swift}
-    - {osx_image: xcode9.2,     env: 'SWFT=3.2  PLAT=macOS    DST="arch=x86_64"',                    os: osx, language: swift}
+#   - {osx_image: xcode9.2,     env: 'SWFT=3.2  PLAT=macOS    DST="arch=x86_64"',                    os: osx, language: swift}
 #   - {osx_image: xcode9.2,     env: 'SWFT=3.2  PLAT=watchOS  DST="OS=4.2,name=Apple Watch - 38mm"', os: osx, language: swift}
 
 #   - {osx_image: xcode9.3beta, env: 'SWFT=3.3  PLAT=iOS      DST="OS=11.3,name=iPhone SE"',         os: osx, language: swift}
 #   - {osx_image: xcode9.3beta, env: 'SWFT=3.3  PLAT=tvOS     DST="OS=11.3,name=Apple TV"',          os: osx, language: swift}
-    - {osx_image: xcode9.3beta, env: 'SWFT=3.3  PLAT=macOS    DST="arch=x86_64"',                    os: osx, language: swift}
+#   - {osx_image: xcode9.3beta, env: 'SWFT=3.3  PLAT=macOS    DST="arch=x86_64"',                    os: osx, language: swift}
 #   - {osx_image: xcode9.3beta, env: 'SWFT=3.3  PLAT=watchOS  DST="OS=4.3,name=Apple Watch - 38mm"', os: osx, language: swift}
 
-    - {osx_image: xcode9.2,     env: 'SWFT=4.0  PLAT=macOS    DST="arch=x86_64"',                    os: osx, language: swift}
+#   - {osx_image: xcode9.2,     env: 'SWFT=4.0  PLAT=macOS    DST="arch=x86_64"',                    os: osx, language: swift}
 #   - {osx_image: xcode9.2,     env: 'SWFT=4.0  PLAT=iOS      DST="OS=8.4,name=iPhone 4s"',          os: osx, language: swift}
 #   - {osx_image: xcode9.2,     env: 'SWFT=4.0  PLAT=iOS      DST="OS=9.3,name=iPhone SE"',          os: osx, language: swift}
 #   - {osx_image: xcode9.2,     env: 'SWFT=4.0  PLAT=iOS      DST="OS=10.3.1,name=iPhone SE"',       os: osx, language: swift}
@@ -32,8 +32,8 @@ matrix:
     - {osx_image: xcode9.3,     env: 'SWFT=4.1  PLAT=macOS    DST="arch=x86_64"',                    os: osx, language: swift}
 #   - {osx_image: xcode9.3,     env: 'SWFT=4.1  PLAT=watchOS  DST="OS=4.3,name=Apple Watch - 38mm"', os: osx, language: swift}
 
-    - {os: linux, dist: trusty, sudo: required, language: generic, env: 'SWIFT_VERSION=3.1'}
-    - {os: linux, dist: trusty, sudo: required, language: generic, env: 'SWIFT_VERSION=4.0'}
+#   - {os: linux, dist: trusty, sudo: required, language: generic, env: 'SWIFT_VERSION=3.1'}
+#   - {os: linux, dist: trusty, sudo: required, language: generic, env: 'SWIFT_VERSION=4.0'}
 cache:
   directories:
   - Carthage
@@ -46,16 +46,16 @@ before_install:
 install:
   - case $PLAT in
     macOS|tvOS|iOS)
-      xcodebuild -scheme CPKFoundation -quiet -destination "$DST" SWIFT_VERSION=$SWFT build-for-testing -enableCodeCoverage YES;;
+      xcodebuild -scheme CPKFoundation -quiet -destination "$DST" SWIFT_VERSION=$SWFT SWIFT_TREAT_WARNINGS_AS_ERRORS=YES build-for-testing -enableCodeCoverage YES;;
     watchOS)
-      xcodebuild -scheme CPKFoundation -quiet -destination "$DST" SWIFT_VERSION=$SWFT build;;
+      xcodebuild -scheme CPKFoundation -quiet -destination "$DST" SWIFT_VERSION=$SWFT SWIFT_TREAT_WARNINGS_AS_ERRORS=YES build;;
     *)
       swift build;;
     esac
 script:
   - case $PLAT in
     macOS|tvOS|iOS)
-      xcodebuild -scheme CPKFoundation -quiet -destination "$DST" test -enableCodeCoverage YES;;
+      xcodebuild -scheme CPKFoundation -quiet -destination "$DST" SWIFT_VERSION=$SWFT test -enableCodeCoverage YES;;
     watchOS)
       ;;
     *)

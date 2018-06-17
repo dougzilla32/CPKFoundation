@@ -12,8 +12,7 @@
 		63C7FFE31D5C00F2003BAE60 /* Process+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C7FFD51D5C00F2003BAE60 /* Process+Promise.swift */; };
 		63C7FFE91D5C00F2003BAE60 /* NSURLSession+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C7FFDB1D5C00F2003BAE60 /* NSURLSession+Promise.swift */; };
 		63C7FFF71D5C020D003BAE60 /* CPKFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C7FFA71D5BEE09003BAE60 /* CPKFoundation.framework */; };
-		91436DB620A0EB75004E99DB /* CancelForPromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91436DB520A0EB75004E99DB /* CancelForPromiseKit.framework */; };
-		91436DB820A0EB75004E99DB /* Pods_CancelForPromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91436DB720A0EB75004E99DB /* Pods_CancelForPromiseKit.framework */; };
+		91B92B2B20D59C6E00CCEADB /* CancelForPromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B92B2A20D59C6E00CCEADB /* CancelForPromiseKit.framework */; };
 		91F09FAD20A65A60005E7A4E /* NSNotificationCenter+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F09FAC20A65A60005E7A4E /* NSNotificationCenter+Promise.swift */; };
 		91F09FAF20A6C513005E7A4E /* NSObject+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F09FAE20A6C513005E7A4E /* NSObject+Promise.swift */; };
 /* End PBXBuildFile section */
@@ -40,8 +39,11 @@
 		91195B5620AD5AC300074F63 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		912C814F20CF49DF0097534B /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		91353BAF20A365F500254354 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
-		91436DB520A0EB75004E99DB /* CancelForPromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CancelForPromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		91436DB720A0EB75004E99DB /* Pods_CancelForPromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_CancelForPromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91B92B2120D5881700CCEADB /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		91B92B2320D5894100CCEADB /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		91B92B2720D58C2300CCEADB /* Carthage.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Carthage.xcconfig; sourceTree = "<group>"; };
+		91B92B2820D58E2200CCEADB /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
+		91B92B2A20D59C6E00CCEADB /* CancelForPromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CancelForPromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91F09FAC20A65A60005E7A4E /* NSNotificationCenter+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotificationCenter+Promise.swift"; sourceTree = "<group>"; };
 		91F09FAE20A6C513005E7A4E /* NSObject+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Promise.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,8 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91436DB620A0EB75004E99DB /* CancelForPromiseKit.framework in Frameworks */,
-				91436DB820A0EB75004E99DB /* Pods_CancelForPromiseKit.framework in Frameworks */,
+				91B92B2B20D59C6E00CCEADB /* CancelForPromiseKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +74,10 @@
 				91353BAF20A365F500254354 /* README.markdown */,
 				912C814F20CF49DF0097534B /* .travis.yml */,
 				63C700091D5C0253003BAE60 /* Info.plist */,
+				91B92B2120D5881700CCEADB /* Cartfile */,
+				91B92B2820D58E2200CCEADB /* Cartfile.private */,
+				91B92B2720D58C2300CCEADB /* Carthage.xcconfig */,
+				91B92B2320D5894100CCEADB /* Package.swift */,
 				63C7FFA91D5BEE09003BAE60 /* Sources */,
 				63C7FFF31D5C020D003BAE60 /* Tests */,
 				63C7FFA81D5BEE09003BAE60 /* Products */,
@@ -114,8 +119,7 @@
 		912F4C23209CE8080037EF4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				91436DB520A0EB75004E99DB /* CancelForPromiseKit.framework */,
-				91436DB720A0EB75004E99DB /* Pods_CancelForPromiseKit.framework */,
+				91B92B2A20D59C6E00CCEADB /* CancelForPromiseKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -158,6 +162,7 @@
 				63C7FFEE1D5C020D003BAE60 /* Sources */,
 				63C7FFEF1D5C020D003BAE60 /* Frameworks */,
 				91195B5120AD5A5000074F63 /* SwiftLint */,
+				91B92B2620D58A4300CCEADB /* Embed Carthage Frameworks */,
 			);
 			buildRules = (
 			);
@@ -240,6 +245,24 @@
 			shellScript = "if which swiftlint >/dev/null; then\n(cd Sources ; swiftlint)\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		91B92B2620D58A4300CCEADB /* Embed Carthage Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				PromiseKit,
+				PMKFoundation,
+				CancelForPromiseKit,
+			);
+			name = "Embed Carthage Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "case \"$PLATFORM_NAME\" in\n    macosx) plat=Mac;;\n    iphone*) plat=iOS;;\n    watch*) plat=watchOS;;\n    appletv*) plat=tvOS;;\n    *) echo \"error: Unknown PLATFORM_NAME: $PLATFORM_NAME\"; exit 1;;\nesac\n\nCARTHAGE_BUILD_DIR=\"$SRCROOT\"/Carthage/Build/$plat\nif [ -d \"$CARTHAGE_BUILD_DIR\" ] ; then\n    for (( n = 0; n < SCRIPT_INPUT_FILE_COUNT; n++ )); do\n        VAR=SCRIPT_INPUT_FILE_$n\n        framework=$(basename \"${!VAR}\")\n        export SCRIPT_INPUT_FILE_$n=\"$CARTHAGE_BUILD_DIR\"/\"$framework\".framework\n    done\n\n    /usr/local/bin/carthage copy-frameworks || exit\n\n    for (( n = 0; n < SCRIPT_INPUT_FILE_COUNT; n++ )); do\n        VAR=SCRIPT_INPUT_FILE_$n\n        source=${!VAR}.dSYM\n        dest=${BUILT_PRODUCTS_DIR}/$(basename \"$source\")\n        ditto \"$source\" \"$dest\" || exit\n    done\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -276,6 +299,7 @@
 /* Begin XCBuildConfiguration section */
 		63C7FFAD1D5BEE09003BAE60 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91B92B2720D58C2300CCEADB /* Carthage.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -310,8 +334,6 @@
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/OHHTTPStubs\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromiseKit\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -336,10 +358,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
-					"\"Alamofire\"",
-					"-framework",
-					"\"OHHTTPStubs\"",
-					"-framework",
 					"\"PromiseKit\"",
 				);
 				PODS_BUILD_DIR = "${BUILD_DIR}";
@@ -357,6 +375,7 @@
 		};
 		63C7FFAE1D5BEE09003BAE60 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91B92B2720D58C2300CCEADB /* Carthage.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -391,8 +410,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/OHHTTPStubs\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromiseKit\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -409,10 +426,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-framework",
-					"\"Alamofire\"",
-					"-framework",
-					"\"OHHTTPStubs\"",
 					"-framework",
 					"\"PromiseKit\"",
 				);
@@ -464,12 +477,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromiseKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/OHHTTPStubs\"",
+				);
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"OHHTTPStubs\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SUPPRESS_WARNINGS = YES;
 			};
 			name = Debug;
 		};
@@ -477,11 +499,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromiseKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/OHHTTPStubs\"",
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/OHHTTPStubs\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromiseKit\"",
+				);
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"OHHTTPStubs\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SUPPRESS_WARNINGS = YES;
 			};
 			name = Release;
 		};
