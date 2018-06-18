@@ -72,14 +72,9 @@
 			isa = PBXGroup;
 			children = (
 				91353BAF20A365F500254354 /* README.markdown */,
-				912C814F20CF49DF0097534B /* .travis.yml */,
-				63C700091D5C0253003BAE60 /* Info.plist */,
-				91B92B2120D5881700CCEADB /* Cartfile */,
-				91B92B2820D58E2200CCEADB /* Cartfile.private */,
-				91B92B2720D58C2300CCEADB /* Carthage.xcconfig */,
-				91B92B2320D5894100CCEADB /* Package.swift */,
 				63C7FFA91D5BEE09003BAE60 /* Sources */,
 				63C7FFF31D5C020D003BAE60 /* Tests */,
+				912C81E420D86ED00097534B /* Config */,
 				63C7FFA81D5BEE09003BAE60 /* Products */,
 				912F4C23209CE8080037EF4C /* Frameworks */,
 			);
@@ -115,6 +110,19 @@
 			);
 			path = Tests;
 			sourceTree = SOURCE_ROOT;
+		};
+		912C81E420D86ED00097534B /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				91B92B2120D5881700CCEADB /* Cartfile */,
+				91B92B2820D58E2200CCEADB /* Cartfile.private */,
+				91B92B2720D58C2300CCEADB /* Carthage.xcconfig */,
+				91B92B2320D5894100CCEADB /* Package.swift */,
+				912C814F20CF49DF0097534B /* .travis.yml */,
+				63C700091D5C0253003BAE60 /* Info.plist */,
+			);
+			name = Config;
+			sourceTree = "<group>";
 		};
 		912F4C23209CE8080037EF4C /* Frameworks */ = {
 			isa = PBXGroup;
@@ -254,6 +262,7 @@
 				PromiseKit,
 				PMKFoundation,
 				CancelForPromiseKit,
+				OHHTTPStubs,
 			);
 			name = "Embed Carthage Frameworks";
 			outputPaths = (
@@ -359,10 +368,12 @@
 					"$(inherited)",
 					"-framework",
 					"\"PromiseKit\"",
+					"-framework",
+					PMKFoundation,
 				);
 				PODS_BUILD_DIR = "${BUILD_DIR}";
 				PODS_CONFIGURATION_BUILD_DIR = "${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
-				PRODUCT_BUNDLE_IDENTIFIER = org.promisekit.Foundation;
+				PRODUCT_BUNDLE_IDENTIFIER = org.cpk.Foundation;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos watchsimulator watchos macosx appletvsimulator appletvos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -428,10 +439,12 @@
 					"$(inherited)",
 					"-framework",
 					"\"PromiseKit\"",
+					"-framework",
+					PMKFoundation,
 				);
 				PODS_BUILD_DIR = "${BUILD_DIR}";
 				PODS_CONFIGURATION_BUILD_DIR = "${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
-				PRODUCT_BUNDLE_IDENTIFIER = org.promisekit.Foundation;
+				PRODUCT_BUNDLE_IDENTIFIER = org.cpk.Foundation;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos watchsimulator watchos macosx appletvsimulator appletvos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
@@ -479,7 +492,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromiseKit\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/OHHTTPStubs\"",
 				);
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
@@ -501,13 +513,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromiseKit\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/OHHTTPStubs\"",
-				);
-				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/OHHTTPStubs\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromiseKit\"",
 				);
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
