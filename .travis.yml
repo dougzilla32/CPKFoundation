@@ -55,7 +55,7 @@ install:
 script:
   - case $PLAT in
     macOS|tvOS|iOS)
-      xcodebuild -scheme CPKFoundationCT -quiet -destination "$DST" SWIFT_VERSION=$SWFT test -enableCodeCoverage YES;;
+      xcodebuild -scheme CPKFoundationCT -quiet -destination "$DST" SWIFT_VERSION=$SWFT SWIFT_TREAT_WARNINGS_AS_ERRORS=YES test -enableCodeCoverage YES;;
     watchOS)
       ;;
     *)
