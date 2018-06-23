@@ -20,7 +20,7 @@
 		91D2C06720D9E5FD005E5F0E /* CancelForPromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B92B2A20D59C6E00CCEADB /* CancelForPromiseKit.framework */; };
 		91D2C07320D9E608005E5F0E /* TestNSTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C7FFFF1D5C021F003BAE60 /* TestNSTask.swift */; };
 		91D2C07420D9E608005E5F0E /* TestNSURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C700021D5C021F003BAE60 /* TestNSURLSession.swift */; };
-		91D2C07620D9E608005E5F0E /* CPKFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C7FFA71D5BEE09003BAE60 /* CPKFoundation.framework */; };
+		91DF53BF20DE2AA6001CBF46 /* CPKFoundationCT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D2C06D20D9E5FD005E5F0E /* CPKFoundationCT.framework */; };
 		91F09FAD20A65A60005E7A4E /* NSNotificationCenter+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F09FAC20A65A60005E7A4E /* NSNotificationCenter+Promise.swift */; };
 		91F09FAF20A6C513005E7A4E /* NSObject+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F09FAE20A6C513005E7A4E /* NSObject+Promise.swift */; };
 /* End PBXBuildFile section */
@@ -33,12 +33,12 @@
 			remoteGlobalIDString = 63C7FFA61D5BEE09003BAE60;
 			remoteInfo = PMKFoundation;
 		};
-		91D2C07120D9E608005E5F0E /* PBXContainerItemProxy */ = {
+		91DF53BC20DE294A001CBF46 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 63C7FF9E1D5BEE09003BAE60 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 63C7FFA61D5BEE09003BAE60;
-			remoteInfo = PMKFoundation;
+			remoteGlobalIDString = 91D2C06020D9E5FD005E5F0E;
+			remoteInfo = CPKFoundationCT;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -94,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91D2C07620D9E608005E5F0E /* CPKFoundation.framework in Frameworks */,
+				91DF53BF20DE2AA6001CBF46 /* CPKFoundationCT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,7 +253,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				91D2C07020D9E608005E5F0E /* PBXTargetDependency */,
+				91DF53BD20DE294A001CBF46 /* PBXTargetDependency */,
 			);
 			name = CPKNSTestsCT;
 			productName = PMKTests/NS;
@@ -433,10 +433,10 @@
 			target = 63C7FFA61D5BEE09003BAE60 /* CPKFoundation */;
 			targetProxy = 63C7FFF81D5C020D003BAE60 /* PBXContainerItemProxy */;
 		};
-		91D2C07020D9E608005E5F0E /* PBXTargetDependency */ = {
+		91DF53BD20DE294A001CBF46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 63C7FFA61D5BEE09003BAE60 /* CPKFoundation */;
-			targetProxy = 91D2C07120D9E608005E5F0E /* PBXContainerItemProxy */;
+			target = 91D2C06020D9E5FD005E5F0E /* CPKFoundationCT */;
+			targetProxy = 91DF53BC20DE294A001CBF46 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
