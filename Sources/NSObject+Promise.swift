@@ -1,8 +1,14 @@
 import Foundation
 import PromiseKit
 
-#if CPKCarthage || (swift(>=4.1) && canImport(PMKFoundation))
+#if CPKCarthage
 import PMKFoundation
+#else
+#if swift(>=4.1)
+#if canImport(PMKFoundation)
+import PMKFoundation
+#endif
+#endif
 #endif
 
 #if !CPKCocoaPods
