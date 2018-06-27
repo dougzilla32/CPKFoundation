@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "91D2C06020D9E5FD005E5F0E"
-               BuildableName = "CPKFoundationCT.framework"
+               BuildableName = "CPKFoundation.framework"
                BlueprintName = "CPKFoundationCT"
                ReferencedContainer = "container:CPKFoundation.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91D2C06020D9E5FD005E5F0E"
-            BuildableName = "CPKFoundationCT.framework"
+            BuildableName = "CPKFoundation.framework"
             BlueprintName = "CPKFoundationCT"
             ReferencedContainer = "container:CPKFoundation.xcodeproj">
          </BuildableReference>
@@ -79,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91D2C06020D9E5FD005E5F0E"
-            BuildableName = "CPKFoundationCT.framework"
+            BuildableName = "CPKFoundation.framework"
             BlueprintName = "CPKFoundationCT"
             ReferencedContainer = "container:CPKFoundation.xcodeproj">
          </BuildableReference>
@@ -97,7 +97,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91D2C06020D9E5FD005E5F0E"
-            BuildableName = "CPKFoundationCT.framework"
+            BuildableName = "CPKFoundation.framework"
             BlueprintName = "CPKFoundationCT"
             ReferencedContainer = "container:CPKFoundation.xcodeproj">
          </BuildableReference>

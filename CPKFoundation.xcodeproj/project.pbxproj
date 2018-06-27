@@ -20,7 +20,7 @@
 		91D2C06720D9E5FD005E5F0E /* CancelForPromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B92B2A20D59C6E00CCEADB /* CancelForPromiseKit.framework */; };
 		91D2C07320D9E608005E5F0E /* TestNSTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C7FFFF1D5C021F003BAE60 /* TestNSTask.swift */; };
 		91D2C07420D9E608005E5F0E /* TestNSURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C700021D5C021F003BAE60 /* TestNSURLSession.swift */; };
-		91DF53BF20DE2AA6001CBF46 /* CPKFoundationCT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D2C06D20D9E5FD005E5F0E /* CPKFoundationCT.framework */; };
+		91DF53BF20DE2AA6001CBF46 /* CPKFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D2C06D20D9E5FD005E5F0E /* CPKFoundation.framework */; };
 		91F09FAD20A65A60005E7A4E /* NSNotificationCenter+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F09FAC20A65A60005E7A4E /* NSNotificationCenter+Promise.swift */; };
 		91F09FAF20A6C513005E7A4E /* NSObject+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F09FAE20A6C513005E7A4E /* NSObject+Promise.swift */; };
 /* End PBXBuildFile section */
@@ -59,7 +59,7 @@
 		91B92B2720D58C2300CCEADB /* Carthage.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Carthage.xcconfig; sourceTree = "<group>"; };
 		91B92B2820D58E2200CCEADB /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
 		91B92B2A20D59C6E00CCEADB /* CancelForPromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CancelForPromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		91D2C06D20D9E5FD005E5F0E /* CPKFoundationCT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CPKFoundationCT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91D2C06D20D9E5FD005E5F0E /* CPKFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CPKFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D2C07C20D9E608005E5F0E /* CPKNSTestsCT.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CPKNSTestsCT.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		91F09FAC20A65A60005E7A4E /* NSNotificationCenter+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotificationCenter+Promise.swift"; sourceTree = "<group>"; };
 		91F09FAE20A6C513005E7A4E /* NSObject+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Promise.swift"; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91DF53BF20DE2AA6001CBF46 /* CPKFoundationCT.framework in Frameworks */,
+				91DF53BF20DE2AA6001CBF46 /* CPKFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +118,7 @@
 			children = (
 				63C7FFA71D5BEE09003BAE60 /* CPKFoundation.framework */,
 				63C7FFF21D5C020D003BAE60 /* CPKNSTests.xctest */,
-				91D2C06D20D9E5FD005E5F0E /* CPKFoundationCT.framework */,
+				91D2C06D20D9E5FD005E5F0E /* CPKFoundation.framework */,
 				91D2C07C20D9E608005E5F0E /* CPKNSTestsCT.xctest */,
 			);
 			name = Products;
@@ -238,7 +238,7 @@
 			);
 			name = CPKFoundationCT;
 			productName = "PMK+UIKit";
-			productReference = 91D2C06D20D9E5FD005E5F0E /* CPKFoundationCT.framework */;
+			productReference = 91D2C06D20D9E5FD005E5F0E /* CPKFoundation.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		91D2C06F20D9E608005E5F0E /* CPKNSTestsCT */ = {
@@ -677,8 +677,8 @@
 					"-framework",
 					PMKFoundation,
 				);
-				PRODUCT_MODULE_NAME = "${TARGET_NAME}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = CPKFoundation;
+				PRODUCT_NAME = CPKFoundation;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG CPKCarthage";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -699,8 +699,8 @@
 					"-framework",
 					PMKFoundation,
 				);
-				PRODUCT_MODULE_NAME = "${TARGET_NAME}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = CPKFoundation;
+				PRODUCT_NAME = CPKFoundation;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = CPKCarthage;
 			};
 			name = Release;
