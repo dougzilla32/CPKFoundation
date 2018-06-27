@@ -1,7 +1,7 @@
 import Foundation
 import PromiseKit
 
-#if CPKCarthage
+#if Carthage
 import PMKFoundation
 #else
 #if swift(>=4.1)

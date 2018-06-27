@@ -27,6 +27,12 @@ import CancelForPromiseKit
 import CPKFoundation
 ```
 
+To build with Carthage on versions of Swift prior to 4.1, set the 'Carthage' flag in your target's Build settings at the following location. This is necessary to properly import the PMKFoundation module, which is only defined for Carthage:
+    
+    TARGETS -> [Your target name]:
+        'Swift Compiler - Custom Flags' -> 'Active Compilation Conditions' -> 'Debug'
+        'Swift Compiler - Custom Flags' -> 'Active Compilation Conditions' -> 'Release'
+
 ## SwiftPM
 
 ```swift
@@ -37,5 +43,5 @@ let package = Package(
 )
 ```
 
-[Build Status]: https://travis-ci.org/CancelForPromiseKit/Foundation.svg?branch=master
+[Build Status]: https://travis-ci.org/dougzilla32/CPKCoreLocation.svg?branch=master
 [PromiseKit's Foundation extension]: https://github.com/PromiseKit/Foundation

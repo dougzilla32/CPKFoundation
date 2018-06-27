@@ -679,7 +679,7 @@
 				);
 				PRODUCT_MODULE_NAME = CPKFoundation;
 				PRODUCT_NAME = CPKFoundation;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG CPKCarthage";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG Carthage";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -701,7 +701,7 @@
 				);
 				PRODUCT_MODULE_NAME = CPKFoundation;
 				PRODUCT_NAME = CPKFoundation;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = CPKCarthage;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Carthage;
 			};
 			name = Release;
 		};
