@@ -1,9 +1,9 @@
 matrix:
   include:
-    - {osx_image: xcode8.3, env: 'SWFT=3.1  PLAT=iOS      DST="OS=10.3.1,name=iPhone SE"',       os: osx, language: swift}
-    - {osx_image: xcode8.3, env: 'SWFT=3.1  PLAT=tvOS     DST="OS=10.2,name=Apple TV 1080p"',    os: osx, language: swift}
-    - {osx_image: xcode8.3, env: 'SWFT=3.1  PLAT=macOS    DST="arch=x86_64"',                    os: osx, language: swift}
-    - {osx_image: xcode8.3, env: 'SWFT=3.1  PLAT=watchOS  DST="OS=3.2,name=Apple Watch - 38mm"', os: osx, language: swift}
+#   - {osx_image: xcode8.3, env: 'SWFT=3.1  PLAT=iOS      DST="OS=10.3.1,name=iPhone SE"',       os: osx, language: swift}
+#   - {osx_image: xcode8.3, env: 'SWFT=3.1  PLAT=tvOS     DST="OS=10.2,name=Apple TV 1080p"',    os: osx, language: swift}
+#   - {osx_image: xcode8.3, env: 'SWFT=3.1  PLAT=macOS    DST="arch=x86_64"',                    os: osx, language: swift}
+#   - {osx_image: xcode8.3, env: 'SWFT=3.1  PLAT=watchOS  DST="OS=3.2,name=Apple Watch - 38mm"', os: osx, language: swift}
 
     - {osx_image: xcode9.2, env: 'SWFT=3.2  PLAT=iOS      DST="OS=11.2,name=iPhone SE"',         os: osx, language: swift}
     - {osx_image: xcode9.2, env: 'SWFT=3.2  PLAT=tvOS     DST="OS=11.2,name=Apple TV"',          os: osx, language: swift}
