@@ -1,4 +1,6 @@
-# CancelForPromiseKit Foundation Extensions ![Build Status]
+# CancelForPromiseKit Foundation Extensions
+
+[![Build Status](https://travis-ci.org/dougzilla32/CPKFoundation.svg?branch=master)](https://travis-ci.org/dougzilla32/CPKFoundation)
 
 This project adds cancellable promises to [PromiseKit's Foundation extension].
 
@@ -43,5 +45,4 @@ let package = Package(
 )
 ```
 
-[Build Status]: https://travis-ci.org/dougzilla32/CPKCoreLocation.svg?branch=master
 [PromiseKit's Foundation extension]: https://github.com/PromiseKit/Foundation
