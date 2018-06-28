@@ -18,10 +18,12 @@ import CancelForPromiseKit
 #if os(macOS)
 
 extension Process: CancellableTask {
+    /// Sends an interrupt signal to the process
     public func cancel() {
         interrupt()
     }
     
+    /// `true` if the Process was successfully interrupted, `false` otherwise
     public var isCancelled: Bool {
         return !isRunning
     }

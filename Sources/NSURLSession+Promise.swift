@@ -16,6 +16,7 @@ import CancelForPromiseKit
 #endif
 
 extension URLSessionTask: CancellableTask {
+    /// `true` if the URLSessionTask was successfully cancelled, `false` otherwise
     public var isCancelled: Bool {
         return state == .canceling
     }
@@ -134,6 +135,7 @@ extension URLSession {
         return promise
     }
 
+    /// Wraps the (Data?, URLResponse?, Error?) response from URLSession.uploadTask(with:from:) as CancellablePromise<(Data,URLResponse)>
     public func uploadTaskCC(_: PMKNamespacer, with convertible: URLRequestConvertible, from data: Data) -> CancellablePromise<(data: Data, response: URLResponse)> {
         var task: URLSessionTask!
         var reject: ((Error) -> Void)!
@@ -148,6 +150,7 @@ extension URLSession {
         return promise
     }
 
+    /// Wraps the (Data?, URLResponse?, Error?) response from URLSession.uploadTask(with:fromFile:) as CancellablePromise<(Data,URLResponse)>
     public func uploadTaskCC(_: PMKNamespacer, with convertible: URLRequestConvertible, fromFile file: URL) -> CancellablePromise<(data: Data, response: URLResponse)> {
         var task: URLSessionTask!
         var reject: ((Error) -> Void)!
@@ -162,7 +165,10 @@ extension URLSession {
         return promise
     }
 
-    /// - Remark: we force a `to` parameter because Apple deletes the downloaded file immediately after the underyling completion handler returns.
+    /**
+     Wraps the URLSesstionDownloadTask response from URLSession.downloadTask(with:) as CancellablePromise<(URL,URLResponse)>
+     - Remark: we force a `to` parameter because Apple deletes the downloaded file immediately after the underyling completion handler returns.
+     */
     public func downloadTaskCC(_: PMKNamespacer, with convertible: URLRequestConvertible, to saveLocation: URL) -> CancellablePromise<(saveLocation: URL, response: URLResponse)> {
         var task: URLSessionTask!
         var reject: ((Error) -> Void)!
