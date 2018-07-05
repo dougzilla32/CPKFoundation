@@ -2,11 +2,11 @@
 
 [![badge-docs](https://dougzilla32.github.io/CPKFoundation/api/badge.svg)](https://dougzilla32.github.io/CPKFoundation/api/) [![Build Status](https://travis-ci.org/dougzilla32/CPKFoundation.svg?branch=master)](https://travis-ci.org/dougzilla32/CPKFoundation)
 
-This project adds cancellable promises to [PromiseKit's Foundation extension].
+The [CancelForPromiseKit Foundation Extensions] add cancellable promises to [PromiseKit's Foundation extensions].
 
 This project supports iOS, tvOS, watchOS, macOS, Swift 3.0, 3.1, 3.2, 4.0 and 4.1.
 
-Here is the [Jazzy](https://github.com/realm/jazzy) generated [CancelForPromiseKit Foundation Extensions API documentation](https://dougzilla32.github.io/CPKFoundation/api/).
+Here's a link to the [Jazzy](https://github.com/realm/jazzy) generated [API documentation](https://dougzilla32.github.io/CPKFoundation/api/).
 
 ## CococaPods
 
@@ -47,4 +47,5 @@ let package = Package(
 )
 ```
 
-[PromiseKit's Foundation extension]: https://github.com/PromiseKit/Foundation
+[CancelForPromiseKit Foundation Extensions]: https://github.com/dougzilla32/CPKFoundation
+[PromiseKit's Foundation extensions]: https://github.com/PromiseKit/Foundation
