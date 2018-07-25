@@ -1,5 +1,4 @@
 import Foundation
-import PromiseKit
 
 #if Carthage
 import PMKFoundation

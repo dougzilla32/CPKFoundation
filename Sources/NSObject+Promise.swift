@@ -1,5 +1,4 @@
 import Foundation
-import PromiseKit
 
 #if Carthage
 import PMKFoundation
@@ -43,7 +42,7 @@ extension NSObject {
         
         let promise = CancellablePromise<Any?> { seal in
             reject = seal.reject
-            task = KVOProxy(observee: self, keyPath: keyPath, resolve: seal.fulfill)
+            task = CancellableKVOProxy(observee: self, keyPath: keyPath, resolve: seal.fulfill)
          }
         
         promise.appendCancellableTask(task: task, reject: reject)
@@ -51,17 +50,19 @@ extension NSObject {
     }
 }
 
-private class KVOProxy: NSObject, CancellableTask {
-    var retainCycle: KVOProxy?
+private class CancellableKVOProxy: NSObject, CancellableTask {
+    var retainCycle: CancellableKVOProxy?
     let fulfill: (Any?) -> Void
     let observeeObject: NSObject
     let observeeKeyPath: String
+    var observing: Bool
     
     @discardableResult
     init(observee: NSObject, keyPath: String, resolve: @escaping (Any?) -> Void) {
         fulfill = resolve
         observeeObject = observee
         observeeKeyPath = keyPath
+        observing = true
         super.init()
         observee.addObserver(self, forKeyPath: keyPath, options: NSKeyValueObservingOptions.new, context: pointer)
         retainCycle = self
@@ -71,15 +72,19 @@ private class KVOProxy: NSObject, CancellableTask {
         if let change = change, context == pointer {
             defer { retainCycle = nil }
             fulfill(change[NSKeyValueChangeKey.newKey])
-            if let object = object as? NSObject, let keyPath = keyPath {
+            if let object = object as? NSObject, let keyPath = keyPath, observing {
                 object.removeObserver(self, forKeyPath: keyPath)
+                observing = false
             }
         }
     }
     
     func cancel() {
         if !isCancelled {
-            observeeObject.removeObserver(self, forKeyPath: observeeKeyPath)
+            if observing {
+                observeeObject.removeObserver(self, forKeyPath: observeeKeyPath)
+                observing = false
+            }
             isCancelled = true
         }
     }
@@ -87,6 +92,6 @@ private class KVOProxy: NSObject, CancellableTask {
     var isCancelled = false
     
     private lazy var pointer: UnsafeMutableRawPointer = {
-        return Unmanaged<KVOProxy>.passUnretained(self).toOpaque()
+        return Unmanaged<CancellableKVOProxy>.passUnretained(self).toOpaque()
     }()
 }

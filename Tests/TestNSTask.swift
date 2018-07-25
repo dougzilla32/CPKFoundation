@@ -12,7 +12,7 @@ import class Contacts.CNPostalAddress
 #if os(macOS)
 
 class NSTaskTests: XCTestCase {
-    func test1() {
+    func testCancel1() {
         let ex = expectation(description: "")
         let task = Process()
         task.launchPath = "/usr/bin/man"
@@ -28,7 +28,7 @@ class NSTaskTests: XCTestCase {
         waitForExpectations(timeout: 3)
     }
 
-    func test2() {
+    func testCancel2() {
         let ex = expectation(description: "")
         let dir = "/usr/bin"
 

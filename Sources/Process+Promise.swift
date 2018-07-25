@@ -1,5 +1,4 @@
 import Foundation
-import PromiseKit
 
 #if Carthage
 import PMKFoundation
@@ -57,7 +56,9 @@ extension Process {
          }.then { stdout in
              print(str)
          }.cancelContext
+
          //…
+
          context.cancel()
      */
     public func launchCC(_: PMKNamespacer) -> CancellablePromise<(out: Pipe, err: Pipe)> {

@@ -13,6 +13,12 @@
 		63C7FFE91D5C00F2003BAE60 /* NSURLSession+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C7FFDB1D5C00F2003BAE60 /* NSURLSession+Promise.swift */; };
 		63C7FFF71D5C020D003BAE60 /* CPKFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C7FFA71D5BEE09003BAE60 /* CPKFoundation.framework */; };
 		91B92B2B20D59C6E00CCEADB /* CancelForPromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B92B2A20D59C6E00CCEADB /* CancelForPromiseKit.framework */; };
+		91BABDC821080B0700EF352D /* afterlife.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BABDC721080B0700EF352D /* afterlife.swift */; };
+		91BABDC921080B0700EF352D /* afterlife.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BABDC721080B0700EF352D /* afterlife.swift */; };
+		91BABDCC21080F3C00EF352D /* TestNSNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BABDCA21080F3C00EF352D /* TestNSNotificationCenter.swift */; };
+		91BABDCD21080F3C00EF352D /* TestNSNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BABDCA21080F3C00EF352D /* TestNSNotificationCenter.swift */; };
+		91BABDCE21080F3C00EF352D /* TestNSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BABDCB21080F3C00EF352D /* TestNSObject.swift */; };
+		91BABDCF21080F3C00EF352D /* TestNSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BABDCB21080F3C00EF352D /* TestNSObject.swift */; };
 		91D2C06220D9E5FD005E5F0E /* NSNotificationCenter+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F09FAC20A65A60005E7A4E /* NSNotificationCenter+Promise.swift */; };
 		91D2C06320D9E5FD005E5F0E /* NSURLSession+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C7FFDB1D5C00F2003BAE60 /* NSURLSession+Promise.swift */; };
 		91D2C06420D9E5FD005E5F0E /* Process+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C7FFD51D5C00F2003BAE60 /* Process+Promise.swift */; };
@@ -59,6 +65,9 @@
 		91B92B2720D58C2300CCEADB /* Carthage.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Carthage.xcconfig; sourceTree = "<group>"; };
 		91B92B2820D58E2200CCEADB /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
 		91B92B2A20D59C6E00CCEADB /* CancelForPromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CancelForPromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91BABDC721080B0700EF352D /* afterlife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = afterlife.swift; sourceTree = "<group>"; };
+		91BABDCA21080F3C00EF352D /* TestNSNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestNSNotificationCenter.swift; sourceTree = "<group>"; };
+		91BABDCB21080F3C00EF352D /* TestNSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestNSObject.swift; sourceTree = "<group>"; };
 		91D2C06D20D9E5FD005E5F0E /* CPKFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CPKFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D2C07C20D9E608005E5F0E /* CPKNSTestsCT.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CPKNSTestsCT.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		91F09FAC20A65A60005E7A4E /* NSNotificationCenter+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotificationCenter+Promise.swift"; sourceTree = "<group>"; };
@@ -128,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				91195B5520AD5AB700074F63 /* .swiftlint.yml */,
+				91BABDC721080B0700EF352D /* afterlife.swift */,
 				91F09FAC20A65A60005E7A4E /* NSNotificationCenter+Promise.swift */,
 				91F09FAE20A6C513005E7A4E /* NSObject+Promise.swift */,
 				63C7FFDB1D5C00F2003BAE60 /* NSURLSession+Promise.swift */,
@@ -140,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				91195B5620AD5AC300074F63 /* .swiftlint.yml */,
+				91BABDCA21080F3C00EF352D /* TestNSNotificationCenter.swift */,
+				91BABDCB21080F3C00EF352D /* TestNSObject.swift */,
 				63C7FFFF1D5C021F003BAE60 /* TestNSTask.swift */,
 				63C700021D5C021F003BAE60 /* TestNSURLSession.swift */,
 			);
@@ -391,6 +403,7 @@
 			files = (
 				91F09FAD20A65A60005E7A4E /* NSNotificationCenter+Promise.swift in Sources */,
 				63C7FFE91D5C00F2003BAE60 /* NSURLSession+Promise.swift in Sources */,
+				91BABDC821080B0700EF352D /* afterlife.swift in Sources */,
 				63C7FFE31D5C00F2003BAE60 /* Process+Promise.swift in Sources */,
 				91F09FAF20A6C513005E7A4E /* NSObject+Promise.swift in Sources */,
 			);
@@ -400,6 +413,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91BABDCC21080F3C00EF352D /* TestNSNotificationCenter.swift in Sources */,
+				91BABDCE21080F3C00EF352D /* TestNSObject.swift in Sources */,
 				63C700051D5C021F003BAE60 /* TestNSTask.swift in Sources */,
 				63C700081D5C021F003BAE60 /* TestNSURLSession.swift in Sources */,
 			);
@@ -411,6 +426,7 @@
 			files = (
 				91D2C06220D9E5FD005E5F0E /* NSNotificationCenter+Promise.swift in Sources */,
 				91D2C06320D9E5FD005E5F0E /* NSURLSession+Promise.swift in Sources */,
+				91BABDC921080B0700EF352D /* afterlife.swift in Sources */,
 				91D2C06420D9E5FD005E5F0E /* Process+Promise.swift in Sources */,
 				91D2C06520D9E5FD005E5F0E /* NSObject+Promise.swift in Sources */,
 			);
@@ -420,6 +436,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91BABDCD21080F3C00EF352D /* TestNSNotificationCenter.swift in Sources */,
+				91BABDCF21080F3C00EF352D /* TestNSObject.swift in Sources */,
 				91D2C07320D9E608005E5F0E /* TestNSTask.swift in Sources */,
 				91D2C07420D9E608005E5F0E /* TestNSURLSession.swift in Sources */,
 			);

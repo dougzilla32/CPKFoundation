@@ -1,11 +1,10 @@
 import CPKFoundation
 import OHHTTPStubs
-import PromiseKit
 import CancelForPromiseKit
 import XCTest
 
 class NSURLSessionTests: XCTestCase {
-    func test1() {
+    func testCancel1() {
         let json: NSDictionary = ["key1": "value1", "key2": ["value2A", "value2B"]]
 
         OHHTTPStubs.stubRequests(passingTest: { $0.url!.host == "example.com" }) { _ in
@@ -28,7 +27,7 @@ class NSURLSessionTests: XCTestCase {
         waitForExpectations(timeout: 1)
     }
 
-    func test2() {
+    func testCancel2() {
 
         // test that URLDataPromise chains thens
         // this test because I don’t trust the Swift compiler
@@ -56,7 +55,7 @@ class NSURLSessionTests: XCTestCase {
     }
 
     /// test that our convenience String constructor applies
-    func test3() {
+    func testCancel3() {
         let dummy = "fred"
 
         OHHTTPStubs.stubRequests(passingTest: { $0.url!.host == "example.com" }) { _ in

@@ -1,5 +1,4 @@
 import Foundation
-import PromiseKit
 
 #if Carthage
 import PMKFoundation
@@ -208,3 +207,19 @@ private func adapter<T, U>(_ seal: Resolver<(data: T, response: U)>) -> (T?, U?,
         }
     }
 }
+
+#if swift(>=3.1)
+public extension CancellablePromise where T == (data: Data, response: URLResponse) {
+    func validate() -> CancellablePromise<T> {
+        return map {
+            guard let response = $0.response as? HTTPURLResponse else { return $0 }
+            switch response.statusCode {
+            case 200..<300:
+                return $0
+            case let code:
+                throw PMKHTTPError.badStatusCode(code, $0.data, response)
+            }
+        }
+    }
+}
+#endif

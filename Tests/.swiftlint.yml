@@ -3,3 +3,4 @@ disabled_rules:
   - line_length
   - identifier_name
   - multiple_closures_with_trailing_closure
+  - xctfail_message
