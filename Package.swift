@@ -3,6 +3,7 @@ import PackageDescription
 let package = Package(
     name: "CPKFoundation",
     dependencies: [
+        .Package(url: "https://github.com/PromiseKit/Foundation", majorVersion: 3),
         .Package(url: "https://github.com/dougzilla32/CancelForPromiseKit", majorVersion: 1)
     ],
     exclude: [
