@@ -1,5 +1,4 @@
 import Foundation
-import ObjectiveC
 import PromiseKit
 
 #if Carthage
