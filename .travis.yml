@@ -32,37 +32,49 @@ matrix:
     - {osx_image: xcode9.3,     env: 'SWFT=4.1  PLAT=watchOS  DST="OS=3.2,name=Apple Watch - 38mm"', os: osx, language: swift}
     - {osx_image: xcode9.4,     env: 'SWFT=4.1  PLAT=watchOS  DST="OS=4.3,name=Apple Watch - 38mm"', os: osx, language: swift}
 
-    - {os: linux, dist: trusty, sudo: required, language: generic, env: 'SWIFT_VERSION=3.1'}
-    - {os: linux, dist: trusty, sudo: required, language: generic, env: 'SWIFT_VERSION=4.0'}
+    - {os: osx, osx_image: xcode9.4, sudo: required, language: swift, env: 'SWFT=3 SWIFT_BUILD_VERSION=4 DEPEND="SPM"'}
+    - {os: osx, osx_image: xcode9.4, sudo: required, language: swift, env: 'SWFT=4 SWIFT_BUILD_VERSION=4 DEPEND="SPM"'}
+
+#   - {os: linux, dist: trusty, sudo: required, language: generic, env: 'SWIFT_VERSION=3.1'}
+#   - {os: linux, dist: trusty, sudo: required, language: generic, env: 'SWIFT_VERSION=4.0'}
+
 cache:
   directories:
   - Carthage
 before_install:
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
-      carthage bootstrap --cache-builds --no-use-binaries --platform $PLAT --verbose;
-    else
-      eval "$(curl -sL https://swiftenv.fuller.li/install.sh)";
-    fi
-install:
-  - case $PLAT in
-    macOS|tvOS|iOS|watchOS)
-      xcodebuild -scheme CPKFoundationCT -target CPKFoundationCT -destination "$DST" SWIFT_VERSION=$SWFT SWIFT_TREAT_WARNINGS_AS_ERRORS=YES build;
-      if [[ $TEST == "1" ]]; then
-        xcodebuild -scheme CPKFoundationCT -target CPKNSTestsCT -destination "$DST" SWIFT_TREAT_WARNINGS_AS_ERRORS=YES build;
+  - if [ -z "$DEPEND" ] ; then export DEPEND=Carthage ; fi
+  - case $DEPEND in
+    CocoaPods)
+      pod install --repo-update;;
+    Carthage)
+      brew upgrade carthage; carthage bootstrap --cache-builds --no-use-binaries --platform $PLAT --verbose;;
+    SPM)
+      if [ "$TRAVIS_OS_NAME" == "linux" ] ; then
+        eval "$(curl -sL https://swiftenv.fuller.li/install.sh)";
       fi;;
+    esac
+install:
+  - case $DEPEND in
+    SPM)
+        swift --version;
+        swift build -Xswiftc -swift-version -Xswiftc $SWIFT_BUILD_VERSION;;
     *)
-      swift build;;
+      if [ "$PLAT" != "watchOS" ] ; then
+        xcodebuild -scheme CPKFoundationCT -target CPKFoundationCT -quiet -destination "$DST" SWIFT_VERSION=$SWFT SWIFT_TREAT_WARNINGS_AS_ERRORS=YES build-for-testing;
+      else
+        xcodebuild -scheme CPKFoundationCT -target CPKFoundationCT -quiet -destination "$DST" SWIFT_VERSION=$SWFT SWIFT_TREAT_WARNINGS_AS_ERRORS=YES build;
+      fi;;
     esac
 script:
-  - case $PLAT in
-    macOS|tvOS|iOS)
-      if [[ $TEST == "1" ]]; then
-        xcodebuild -scheme CPKFoundationCT -destination "$DST" test -enableCodeCoverage YES;
-      fi;;
-    *)
-      ;;
-    esac
+  - if [ "$PLAT" != "watchOS" ] ; then
+      case $DEPEND in
+      SPM)
+        ;;
+      *)
+        xcodebuild -scheme CPKFoundationCT -target CPKFoundationCT -quiet -destination "$DST" SWIFT_VERSION=$SWFT SWIFT_TREAT_WARNINGS_AS_ERRORS=YES test -enableCodeCoverage YES;;
+      esac
+    fi
 after_success:
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+  - if [ "$TRAVIS_OS_NAME" == "osx" ] ; then
       bash <(curl -s https://codecov.io/bash);
     fi
